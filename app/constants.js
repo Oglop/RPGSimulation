@@ -109,5 +109,11 @@ module.exports = {
         knowsItAll: 'knowsItAll',
         all:'all',
         none: 'none'
+    },
+    ENUM_SEASONS: {
+        winter: 'Winter',
+        spring: 'Spring',
+        summer: 'Summer',
+        fall: 'Fall'
     }
 }
