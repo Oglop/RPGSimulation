@@ -13,7 +13,7 @@ const getEquipment = char => {
         char.equipment.rightHand = copyObject(weapons.longSword)
         char.equipment.head = copyObject(helmets.skullCap)
         char.equipment.leftHand = copyObject(shields.woodenShield)
-        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.body = copyObject(armor.chainMail)
         char.equipment.legs = copyObject(armor.trousers)
     }
     if (char.jobs[0].name === ENUM_JOB_NAMES.fighter) {
@@ -26,6 +26,45 @@ const getEquipment = char => {
         char.equipment.body = copyObject(armor.shirt)
         char.equipment.legs = copyObject(armor.trousers)
     }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.noble) {
+        char.equipment.rightHand = copyObject(weapons.longSword)
+        char.equipment.leftHand = copyObject(shields.heraldicShield)
+        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.thief) {
+        char.equipment.rightHand = copyObject(weapons.dagger)
+        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.ranger) {
+        char.equipment.rightHand = copyObject(weapons.longBow)
+        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.rouge) {
+        char.equipment.rightHand = copyObject(weapons.shortBow)
+        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.monk) {
+        char.equipment.rightHand = copyObject(weapons.woodenStaff)
+        char.equipment.body = copyObject(armor.robes)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.wizard) {
+        char.equipment.rightHand = copyObject(weapons.woodenStaff)
+        char.equipment.body = copyObject(armor.robes)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.cleric) {
+        char.equipment.rightHand = copyObject(weapons.club)
+        char.equipment.leftHand = copyObject(shields.woodenShield)
+        char.equipment.head = copyObject(helmets.skullCap)
+        char.equipment.body = copyObject(armor.chainMail)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    
     return copyObject(char)
 }
 

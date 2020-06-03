@@ -1,4 +1,4 @@
-const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES } = require('../constants')
+const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES, ENUM_RACE_NAMES } = require('../constants')
 const { D20 } = require('../lib/dice');
 const { echo, copyObject } = require('../lib/utils')
 /**
@@ -255,19 +255,33 @@ const skillCheck = (character, skill, luckTest) => {
 
 
 const skillsFactory = (character) => {
+    let skills = []
     switch (character.jobs[0].name) {
-        case ENUM_JOB_NAMES.peseant: return [ copyObject(cook), copyObject(spear), copyObject(lightArmor), copyObject(fishing), copyObject(woodWorker), copyObject(tracking)  ]
-        case ENUM_JOB_NAMES.fighter: return [ copyObject(cook), copyObject(twoHandSword), copyObject(heavyArmor), copyObject(swim), copyObject(hunting), copyObject(shield), copyObject(findTrap), copyObject(tracking) ]
-        case ENUM_JOB_NAMES.knight: return [ copyObject(oneHandSword), copyObject(shield), copyObject(hunting), copyObject(heavyArmor), copyObject(swim) ]
-        case ENUM_JOB_NAMES.thief: return [ copyObject(lightArmor), copyObject(dagger), copyObject(steal), copyObject(lockPicking), copyObject(findTrap), copyObject(swim) ]
-        case ENUM_JOB_NAMES.rouge: return [ copyObject(lightArmor), copyObject(archer), copyObject(lockPicking), copyObject(findTrap), copyObject(swim), copyObject(hunting), copyObject(tracking) ]
-        case ENUM_JOB_NAMES.noble: return [ copyObject(lightArmor), copyObject(oneHandSword), copyObject(shield), copyObject(persuade), copyObject(swim) ]
-        case ENUM_JOB_NAMES.monk: return [ copyObject(cook), copyObject(robes), copyObject(swim), copyObject(healing), copyObject(fishing), copyObject(scholar) ]
-        case ENUM_JOB_NAMES.cleric: return [ copyObject(cook), copyObject(heavyArmor), copyObject(mace), copyObject(shield), copyObject(healing) ]
-        case ENUM_JOB_NAMES.wizard: return [ copyObject(robes), copyObject(staff), copyObject(scholar), copyObject(persuade), copyObject(findTrap) ]
-        case ENUM_JOB_NAMES.ranger: return [ copyObject(cook), copyObject(swim), copyObject(hunting), copyObject(tracking), copyObject(findTrap), copyObject(lightArmor), copyObject(archer)  ]
-        default: return []
+        case ENUM_JOB_NAMES.peseant: skills = [ copyObject(cook), copyObject(spear), copyObject(lightArmor), copyObject(fishing), copyObject(woodWorker), copyObject(tracking)  ]
+        break
+        case ENUM_JOB_NAMES.fighter: skills = [ copyObject(cook), copyObject(twoHandSword), copyObject(heavyArmor), copyObject(swim), copyObject(hunting), copyObject(shield), copyObject(findTrap), copyObject(tracking) ]
+        break
+        case ENUM_JOB_NAMES.knight: skills = [ copyObject(oneHandSword), copyObject(shield), copyObject(hunting), copyObject(heavyArmor), copyObject(swim) ]
+        break
+        case ENUM_JOB_NAMES.thief: skills = [ copyObject(lightArmor), copyObject(dagger), copyObject(steal), copyObject(lockPicking), copyObject(findTrap), copyObject(swim) ]
+        break
+        case ENUM_JOB_NAMES.rouge: skills = [ copyObject(lightArmor), copyObject(archer), copyObject(lockPicking), copyObject(findTrap), copyObject(swim), copyObject(hunting), copyObject(tracking) ]
+        break
+        case ENUM_JOB_NAMES.noble: skills = [ copyObject(lightArmor), copyObject(oneHandSword), copyObject(shield), copyObject(persuade), copyObject(swim) ]
+        break
+        case ENUM_JOB_NAMES.monk: skills = [ copyObject(cook), copyObject(robes), copyObject(swim), copyObject(healing), copyObject(fishing), copyObject(scholar) ]
+        break
+        case ENUM_JOB_NAMES.cleric: skills = [ copyObject(cook), copyObject(heavyArmor), copyObject(mace), copyObject(shield), copyObject(healing) ]
+        break
+        case ENUM_JOB_NAMES.wizard: skills = [ copyObject(robes), copyObject(staff), copyObject(scholar), copyObject(persuade), copyObject(findTrap) ]
+        break
+        case ENUM_JOB_NAMES.ranger: skills = [ copyObject(cook), copyObject(swim), copyObject(hunting), copyObject(tracking), copyObject(findTrap), copyObject(lightArmor), copyObject(archer)  ]
+        break
     }
+    if (character.race.name === ENUM_RACE_NAMES.dwarf) {
+        skills.push(copyObject(axe))
+    }
+    return skills
 }
 
 

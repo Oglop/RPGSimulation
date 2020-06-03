@@ -2,7 +2,7 @@ const { ENUM_SKILL_NAMES, ENUM_EQUIPMENT_TYPE,ENUM_BODY_PART,ENUM_DICE,ENUM_JOB_
 const longSword = {
     name: 'Long sword',
     description: 'A balanced steel long sword',
-    attack: ENUM_DICE.D8,
+    attack: ENUM_DICE.d8,
     modifier: 0,
     skill: ENUM_SKILL_NAMES.oneHandSword,
     equipOn: ENUM_BODY_PART.rightHand,
@@ -15,7 +15,7 @@ const longSword = {
 const twoHandedSword = {
     name: 'Two handed sword',
     description: 'A large steel long sword',
-    attack: ENUM_DICE.D12,
+    attack: ENUM_DICE.d12,
     modifier: 0,
     skill: ENUM_SKILL_NAMES.twoHandSword,
     equipOn: ENUM_BODY_PART.rightHand,
@@ -65,11 +65,53 @@ const woodenStaff = {
         miss:'misses'
     }
 }
+const shortBow = {
+    name: 'Short bow',
+    description: 'A short wooden bow',
+    attack: ENUM_DICE.d6,
+    modifier: 0,
+    skill: ENUM_SKILL_NAMES.archer,
+    equipOn: ENUM_BODY_PART.rightHand,
+    effects: {
+        critical: 'pierces',
+        hit: 'hits',
+        miss:'misses'
+    }
+}
+const longBow = {
+    name: 'Long bow',
+    description: 'A long wooden bow',
+    attack: ENUM_DICE.d8,
+    modifier: 0,
+    skill: ENUM_SKILL_NAMES.archer,
+    equipOn: ENUM_BODY_PART.rightHand,
+    effects: {
+        critical: 'pierces',
+        hit: 'hits',
+        miss:'misses'
+    }
+}
+const club = {
+    name: 'Club',
+    description: 'A rough wooden club',
+    attack: ENUM_DICE.d6,
+    modifier: 0,
+    skill: ENUM_SKILL_NAMES.mace,
+    equipOn: ENUM_BODY_PART.rightHand,
+    effects: {
+        critical: 'smashes hard',
+        hit: 'smashes',
+        miss:'misses'
+    }
+}
 
 module.exports = {
     longSword,
     dagger,
     woodenStaff,
     twoHandedSword,
-    woodenSpear
+    woodenSpear,
+    shortBow,
+    longBow,
+    club
 }

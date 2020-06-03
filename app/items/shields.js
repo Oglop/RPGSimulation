@@ -8,7 +8,17 @@ const woodenShield = {
     skill: ENUM_SKILL_NAMES.shield,
     equipOn: ENUM_BODY_PART.leftHand
 }
+const heraldicShield = {
+    name: 'Heraldic shield',
+    description: 'A shield of a noble house',
+    defence: 2,
+    parry: 3,
+    modifier: 0,
+    skill: ENUM_SKILL_NAMES.shield,
+    equipOn: ENUM_BODY_PART.leftHand
+}
 
 module.exports = { 
-    woodenShield 
+    woodenShield,
+    heraldicShield
 }

@@ -15,8 +15,26 @@ const shirt = {
     skill: ENUM_SKILL_NAMES.lightArmor,
     equipOn: ENUM_BODY_PART.body
 }
+const robes = {
+    name: 'Robes',
+    description: 'Plain grey robes',
+    defence: 1,
+    modifier: 0,
+    skill: ENUM_SKILL_NAMES.robes,
+    equipOn: ENUM_BODY_PART.body
+}
+const chainMail = {
+    name: 'chainMail',
+    description: 'Heavy steel chain mail armor',
+    defence: 4,
+    modifier: 0,
+    skill: ENUM_SKILL_NAMES.heavyArmor,
+    equipOn: ENUM_BODY_PART.body
+}
 
 module.exports = {
     shirt,
-    trousers
+    trousers,
+    robes,
+    chainMail
 }
