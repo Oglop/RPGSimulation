@@ -27,11 +27,11 @@ const date = {
  */
 const addDay = date => {
     date.day += 1
-    if(date.day > months[date.month].numberOfDays) { 
+    if(date.day > months[date.month - 1].numberOfDays) { 
         date.month += 1
         date.day = 1
     }
-    if(date.month > months.length) {
+    if(date.month >= months.length) {
         date.year += 1
         date.month = 1
         date.day = 1
