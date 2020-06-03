@@ -1,6 +1,3 @@
-const { rollCharacter, print } = require('./controllers/character');
+const { goOnAdventure } = require('./simulation/adventure');
 
-for(let i = 0; i < 10; i++) {
-    const a = rollCharacter();
-    print(a)
-}
+goOnAdventure(6)

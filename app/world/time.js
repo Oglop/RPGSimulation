@@ -3,7 +3,7 @@ const { ENUM_SEASONS } = require('../constants')
 
 const months = [
     { name:'Ice', numberOfDays: 21, season: ENUM_SEASONS.winter },
-    { name:'Waiting', numberOfDays: 20, season: ENUM_SEASONS.winter },
+    { name:'Wind', numberOfDays: 20, season: ENUM_SEASONS.winter },
     { name:'Sun', numberOfDays: 21, season: ENUM_SEASONS.spring },
     { name:'Water', numberOfDays: 20, season: ENUM_SEASONS.spring },
     { name:'Wood', numberOfDays: 19, season: ENUM_SEASONS.spring },
