@@ -16,7 +16,16 @@ const getEquipment = char => {
         char.equipment.body = copyObject(armor.shirt)
         char.equipment.legs = copyObject(armor.trousers)
     }
-
+    if (char.jobs[0].name === ENUM_JOB_NAMES.fighter) {
+        char.equipment.rightHand = copyObject(weapons.twoHandedSword)
+        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
+    if (char.jobs[0].name === ENUM_JOB_NAMES.peseant) {
+        char.equipment.rightHand = copyObject(weapons.woodenSpear)
+        char.equipment.body = copyObject(armor.shirt)
+        char.equipment.legs = copyObject(armor.trousers)
+    }
     return copyObject(char)
 }
 
