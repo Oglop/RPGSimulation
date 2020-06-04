@@ -1,11 +1,11 @@
 const { rollCharacter, print } = require('../controllers/character')
-const { date, addDay, printDate } = require('../world/time')
+const { date, addDay, printDate, yearsPassed } = require('../world/time')
 const { echo, copyObject } = require('../lib/utils')
 /**
  * 
  * @param {int} partySize 
  */
-const goOnAdventure = (partySize) => {
+const goOnAdventure = (partySize, yearsToSimulate) => {
     
     const now = copyObject(date)
     echo(`Once upon a time`)

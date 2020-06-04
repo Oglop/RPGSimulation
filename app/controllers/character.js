@@ -20,6 +20,12 @@ const print = character => {
     for(const lang of character.languages) {
         echo(`Speaks ${getLanguageSkollLevelText(lang)} ${lang.name}`)
     }
+    for (var key in character.equipment) {
+        
+        if (character.equipment[key].description !== undefined) {
+            echo(character.equipment[key].description);
+        }
+    }
 }
 const printShort = character => {
     echo(`${character.name} lv ${character.level}, the ${character.race.name} ${character.jobs[0].name}`)

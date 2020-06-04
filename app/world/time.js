@@ -1,6 +1,9 @@
 const { echo } = require('../lib/utils')
 const { ENUM_SEASONS } = require('../constants')
 
+/**
+ * Months year is 245 days
+ */
 const months = [
     { name:'Ice', numberOfDays: 21, season: ENUM_SEASONS.winter },
     { name:'Wind', numberOfDays: 20, season: ENUM_SEASONS.winter },
@@ -38,13 +41,46 @@ const addDay = date => {
     }
 }
 /**
+ * 
+ * @param {object} startDate 
+ * @param {object} currentDate 
+ */
+const yearsPassed = (startDate, currentDate) => {
+    let daysPassed = 0
+    const yearDiff = currentDate.year - startDate.year
+    daysPassed += yearDiff * 245
+    const monthDiff = currentDate.month - startDate.month
+    // if we are after start month add days until we are at the same month
+    if (monthDiff > 0) {
+        for (let i = startDate.month - 1; i < currentDate.month -1; i++) {
+            if ( i < currentDate.month -1) {
+                daysPassed += months[i].numberOfDays
+            } else {
+                break
+            }
+        }
+    } else if (monthDiff < 0) {
+        daysPassed -= 245
+        for (let i = 0; i < currentDate.month - 1; i++) {
+            if (i < currentDate.month -1) {
+                daysPassed += months[i].numberOfDays
+            } else {
+                break
+            }
+        } 
+    }
+    daysPassed += currentDate.day
+    const yy = (daysPassed >= 245) ? Math.floor(daysPassed / 245) : 0
+    return yy
+}
+/**
  * echos date object
  * @param {object} date 
  */
 const printDate = date => {
-    echo(`${months[date.month].season} of ${date.year}, day ${date.day} in the month of ${months[date.month].name}`)
+    echo(`${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`)
 }
 
 module.exports = {
-    date, addDay, printDate
+    date, addDay, printDate,yearsPassed
 }
