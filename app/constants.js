@@ -116,4 +116,9 @@ module.exports = {
         summer: 'Summer',
         fall: 'Fall'
     }
+    ,
+    ENUM_BIOMS: {
+        grassPlains: 'grassPlains',
+        forest: 'forest',
+    }
 }
