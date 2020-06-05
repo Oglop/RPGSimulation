@@ -1,18 +1,24 @@
-
+const { copyObject } = require('../lib/utils')
 const room = {
-    borders: {
-        east: {},
-        west: {},
-        north: {},
-        south: {},
-        down: {},
-        up: {}
-    },
+    x:0,
+    y:0,
     biome: '',
-    event: ''
+    event: [],
+    environment: {}
+}
+/**
+ * returns a room with coordinates
+ * @param {int} x 
+ * @param {int} y 
+ */
+const getRoom = (x, y) => {
+    const r = copyObject(room)
+    r.x = x
+    r.y = y
+    return r
 }
 
 
 module.exports = {
-    room
+    room, getRoom
 }

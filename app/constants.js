@@ -120,5 +120,34 @@ module.exports = {
     ENUM_BIOMS: {
         grassPlains: 'grassPlains',
         forest: 'forest',
+    },
+    ENUM_EXPLORE_DIR: {
+        north: 'N',
+        south: 'S',
+        west: 'W',
+        east: 'E',
+        unknown: 'U'
+    },
+    ENUM_EXPLORE_STATUS: {
+        valid: 1,
+        visited: 2,
+        empty: 3,
+        start: 4,
+        goal: 5,
+        obstacle:6,
+        blocked:7,
+        invalid:8,
+        unknown:9
+    },
+    ENUM_BIOMES: {
+        forest: 'F',
+        hills: 'H',
+        swamp: 'S',
+        mountains: 'M',
+        plains: 'P',
+        lake: 'L',
+        dessert: 'D',
+        badlands: 'B',
+        forest: 'F'
     }
 }
