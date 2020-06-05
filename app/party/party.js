@@ -4,7 +4,7 @@ const { rollCharacter, print } = require('../controllers/character')
 
 const party = {
     adventurers: [],
-    location: [0,0],
+    location: [9,9],
     quest: {},
     journey: [],
     food: 0

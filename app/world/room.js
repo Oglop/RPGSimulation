@@ -2,6 +2,7 @@ const { copyObject } = require('../lib/utils')
 const room = {
     x:0,
     y:0,
+    description:'',
     biome: '',
     event: [],
     environment: {}

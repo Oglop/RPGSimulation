@@ -21,8 +21,34 @@ const buildWorld = () => {
     // [y][x]
     grid[1][1] = ENUM_EXPLORE_STATUS.obstacle;
     grid[1][2] = ENUM_EXPLORE_STATUS.obstacle;
-    grid[1][3] = ENUM_EXPLORE_STATUS.obstacle;
-    grid[2][1] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[2][8] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[2][16] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[2][17] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[3][14] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[3][17] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[4][5] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[4][6] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[4][11] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[4][12] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[4][13] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[4][14] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[5][5] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[5][13] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[5][14] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[6][4] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[6][13] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[7][4] = ENUM_EXPLORE_STATUS.obstacle;
+
+    grid[8][15] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[8][16] = ENUM_EXPLORE_STATUS.obstacle;
+    grid[8][18] = ENUM_EXPLORE_STATUS.obstacle;
+    
     return grid
 }
 

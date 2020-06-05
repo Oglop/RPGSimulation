@@ -147,7 +147,16 @@ module.exports = {
         plains: 'P',
         lake: 'L',
         dessert: 'D',
-        badlands: 'B',
-        forest: 'F'
+        badlands: 'B'
+    },
+    ENUM_BIOME_DESCRIPTIONS: {
+        forest: 'forest',
+        hills: 'hills',
+        swamp: 'swamp',
+        mountains: 'mountains',
+        plains: 'plains',
+        lake: 'lake',
+        dessert: 'dessert',
+        badlands: 'badlands'
     }
 }
