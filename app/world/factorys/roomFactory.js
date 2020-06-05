@@ -177,6 +177,75 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.plains; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+        case 7: 
+            switch (y) {
+                case 0: r.biome = ENUM_BIOMES.plains; break;
+                case 1:  r.biome = ENUM_BIOMES.forest;  break;
+                case 2:  r.biome = ENUM_BIOMES.plains; break;
+                case 3: r.biome = ENUM_BIOMES.forest;  break;
+                case 4: r.biome = ENUM_BIOMES.lake; break;
+                case 5: r.biome = ENUM_BIOMES.mountains;  break;
+                case 6: r.biome = ENUM_BIOMES.mountains; break;
+                case 7: r.biome = ENUM_BIOMES.hills; break;
+                case 8: r.biome = ENUM_BIOMES.forest; break;
+                case 9: r.biome = ENUM_BIOMES.forest; break;
+                case 10: r.biome = ENUM_BIOMES.plains; break;
+                case 11: r.biome = ENUM_BIOMES.plains; break;
+                case 12: r.biome = ENUM_BIOMES.plains; break;
+                case 13: r.biome = ENUM_BIOMES.plains; break;
+                case 14: r.biome = ENUM_BIOMES.plains; break;
+                case 15: r.biome = ENUM_BIOMES.plains; break;
+                case 16: r.biome = ENUM_BIOMES.plains; break;
+                case 17: r.biome = ENUM_BIOMES.swamp; break;
+                case 18: r.biome = ENUM_BIOMES.swamp; break;
+                case 19: r.biome = ENUM_BIOMES.forest; break;
+            }
+        case 8: 
+            switch (y) {
+                case 0: r.biome = ENUM_BIOMES.plains; break;
+                case 1:  r.biome = ENUM_BIOMES.plains;  break;
+                case 2:  r.biome = ENUM_BIOMES.plains; break;
+                case 3: r.biome = ENUM_BIOMES.plains;  break;
+                case 4: r.biome = ENUM_BIOMES.plains; break;
+                case 5: r.biome = ENUM_BIOMES.plains;  break;
+                case 6: r.biome = ENUM_BIOMES.hills; break;
+                case 7: r.biome = ENUM_BIOMES.plains; break;
+                case 8: r.biome = ENUM_BIOMES.forest; break;
+                case 9: r.biome = ENUM_BIOMES.plains; break;
+                case 10: r.biome = ENUM_BIOMES.plains; break;
+                case 11: r.biome = ENUM_BIOMES.plains; break;
+                case 12: r.biome = ENUM_BIOMES.plains; break;
+                case 13: r.biome = ENUM_BIOMES.forest; break;
+                case 14: r.biome = ENUM_BIOMES.forest; break;
+                case 15: r.biome = ENUM_BIOMES.lake; break;
+                case 16: r.biome = ENUM_BIOMES.lake; break;
+                case 17: r.biome = ENUM_BIOMES.forest; break;
+                case 18: r.biome = ENUM_BIOMES.lake; break;
+                case 19: r.biome = ENUM_BIOMES.lake; break;
+            }
+        case 9: 
+            switch (y) {
+                case 0: r.biome = ENUM_BIOMES.lake; break;
+                case 1:  r.biome = ENUM_BIOMES.plains;  break;
+                case 2:  r.biome = ENUM_BIOMES.plains; break;
+                case 3: r.biome = ENUM_BIOMES.lake;  break;
+                case 4: r.biome = ENUM_BIOMES.plains; break;
+                case 5: r.biome = ENUM_BIOMES.forest;  break;
+                case 6: r.biome = ENUM_BIOMES.forest; break;
+                case 7: r.biome = ENUM_BIOMES.forest; break;
+                case 8: r.biome = ENUM_BIOMES.plains; break;
+                case 9: r.biome = ENUM_BIOMES.plains; break;
+                case 10: r.biome = ENUM_BIOMES.plains; break;
+                case 11: r.biome = ENUM_BIOMES.plains; break;
+                case 12: r.biome = ENUM_BIOMES.plains; break;
+                case 13: r.biome = ENUM_BIOMES.lake; break;
+                case 14: r.biome = ENUM_BIOMES.lake; break;
+                case 15: r.biome = ENUM_BIOMES.hills; break;
+                case 16: r.biome = ENUM_BIOMES.forest; break;
+                case 17: r.biome = ENUM_BIOMES.forest; break;
+                case 18: r.biome = ENUM_BIOMES.plains; break;
+                case 19: r.biome = ENUM_BIOMES.lake; break;
+            }
     }
     return r
 }
