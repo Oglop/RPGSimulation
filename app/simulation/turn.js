@@ -46,7 +46,7 @@ const takeTurn = (party, date) => {
         } else {
             const i = 0
             // if not rest search for quest => go to town
-            // if not quest travel => travel event
+            // if not quest travel => check for getting lost ? => travel event
             // at goal do quest => quest event
         }
     }

@@ -163,6 +163,13 @@ const findTrap = {
     luckTest: false,
     masteryPoints: 0
 }
+const scout = {
+    name: ENUM_SKILL_NAMES.scout,
+    printable: 'scout',
+    statsBase: ENUM_STAT_NAMES.wisdom,
+    luckTest: false,
+    masteryPoints: 0
+}
 const woodWorker = {
     name: ENUM_SKILL_NAMES.woodWorking,
     printable: 'wood worker',
@@ -305,7 +312,7 @@ const skillsFactory = (character) => {
         break
         case ENUM_JOB_NAMES.wizard: skills = [ copyObject(robes), copyObject(staff), copyObject(scholar), copyObject(persuade), copyObject(findTrap) ]
         break
-        case ENUM_JOB_NAMES.ranger: skills = [ copyObject(cook), copyObject(swim), copyObject(hunting), copyObject(tracking), copyObject(findTrap), copyObject(lightArmor), copyObject(archer)  ]
+        case ENUM_JOB_NAMES.ranger: skills = [ copyObject(cook), copyObject(swim), copyObject(hunting), copyObject(tracking), copyObject(findTrap), copyObject(lightArmor), copyObject(archer), copyObject(scout) ]
         break
     }
     if (character.race.name === ENUM_RACE_NAMES.dwarf) {
