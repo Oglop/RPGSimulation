@@ -1,6 +1,7 @@
 const {} = require('../constants')
 const { copyObject } = require('../lib/utils')
 const { rollCharacter, print } = require('../controllers/character')
+const { ENUM_CHARACTER_STATUS } = require('../constants')
 
 const party = {
     maxAdventurers: 0,
@@ -53,7 +54,31 @@ const getPartyMaxCurHpStamina = (party) => {
         sumCurrentStamina
     }
 }
+/**
+ * returns a charcter or empty object
+ * @param {object} party 
+ * @param {boolean} allowDead 
+ */
+const getRandomCharacter = (party, allowDead) => {
+    if (allowDead === true) {
+        const i = Math.floor(Math.random() + party.maxAdventurers)
+        if (party.adventurers[i].status === ENUM_CHARACTER_STATUS.alive) { return party.adventurers[i] }
+    } else {
+        const aliveCharacters = []
+        for (const c of party.adventurers) {
+            if (c.status === ENUM_CHARACTER_STATUS.alive) {
+                aliveCharacters.push(c)
+            }
+        }
+        if (aliveCharacters.length > 0) {
+            const i = Math.floor(Math.random() + aliveCharacters.length)
+            return aliveCharacters[i]
+        }
+    }
+    
+    return {}
+}
 
 module.exports = {
-    getParty, getPartyMaxCurHpStamina
+    getParty, getPartyMaxCurHpStamina, getRandomCharacter
 }

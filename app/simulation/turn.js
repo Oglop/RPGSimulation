@@ -14,7 +14,10 @@ const takeTurn = (party, date) => {
     
 
     // TODO CHECK IF IN TOWN OR QUEST EVENT
+
+
     if (true) {
+        // check for rest => rest events (friendship test and actions)
         const restForTheDay = false
         if (getPercetage(party.maxAdventurers * 7, party.food) <= 10) {
             restForTheDay = true
@@ -29,14 +32,18 @@ const takeTurn = (party, date) => {
         if (restForTheDay === true) {
             const r = room(party.location[0],party.location[1]);
             rest(party, r.biome, getSeason(date))
+            // TODO ROLL REST EVENT
+        } else {
+            // if not rest search for quest => go to town
+            // if not quest travel => travel event
+            // at goal do quest => quest event
         }
     }
     
 
-    // check for rest => rest events (friendship test and actions)
-    // if not rest search for quest => go to town
-    // if not quest travel => travel event
-    // at goal do quest => quest event
+    
+    
+    
     // check character status and add history
     // pass day
 }

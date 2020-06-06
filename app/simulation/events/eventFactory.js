@@ -9,7 +9,7 @@ const {
 const { getSeason } = require('../../world/time')
 
 
-const rollEvent = (party, date, eventType) => {
+const rollEvent = (party, date, eventType, biome) => {
     
 }
 
