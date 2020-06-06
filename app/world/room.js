@@ -1,9 +1,11 @@
 const { copyObject } = require('../lib/utils')
+const { ENUM_SKILL_NAMES } = require('../constants')
 const room = {
     x:0,
     y:0,
     description:'',
     biome: '',
+    skillChecks: [],
     event: [],
     environment: {}
 }

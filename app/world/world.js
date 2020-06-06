@@ -1,6 +1,4 @@
-const {} = require('./factorys/regionFactory')
 const {} = require('./factorys/roomFactory')
-const {} = require('./region')
 const {} = require('./room')
 const {ENUM_EXPLORE_DIR, ENUM_EXPLORE_STATUS} = require('../constants') 
 

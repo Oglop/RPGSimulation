@@ -1,18 +1,35 @@
 const { getRoom } = require('../room')
-const { ENUM_BIOMES, ENUM_BIOME_DESCRIPTIONS } = require('../../constants')
+const { ENUM_BIOMES, ENUM_BIOME_DESCRIPTIONS, ENUM_SKILL_NAMES } = require('../../constants')
 
 const setEvents = room => {
     if (room.biome === ENUM_BIOMES.badlands) {
         room.description = ENUM_BIOME_DESCRIPTIONS.badlands
+        room.skillChecks = [
+            {
+                skill: ENUM_SKILL_NAMES.hunting
+            }
+        ]
+        
+           
     }
     if (room.biome === ENUM_BIOMES.dessert) {
         room.description = ENUM_BIOME_DESCRIPTIONS.dessert
     }
     if (room.biome === ENUM_BIOMES.forest) {
         room.description = ENUM_BIOME_DESCRIPTIONS.forest
+        room.skillChecks = [
+            {
+                skill: ENUM_SKILL_NAMES.hunting
+            }
+        ]
     }
     if (room.biome === ENUM_BIOMES.hills) {
         room.description = ENUM_BIOME_DESCRIPTIONS.hills
+        room.skillChecks = [
+            {
+                skill: ENUM_SKILL_NAMES.hunting
+            }
+        ]
     }
     if (room.biome === ENUM_BIOMES.lake) {
         room.description = ENUM_BIOME_DESCRIPTIONS.lake
@@ -22,6 +39,11 @@ const setEvents = room => {
     }
     if (room.biome === ENUM_BIOMES.plains) {
         room.description = ENUM_BIOME_DESCRIPTIONS.plains
+        room.skillChecks = [
+            {
+                skill: ENUM_SKILL_NAMES.hunting
+            }
+        ]
     }
     if (room.biome === ENUM_BIOMES.swamp) {
         room.description = ENUM_BIOME_DESCRIPTIONS.swamp
@@ -60,7 +82,8 @@ const room = (x, y) => {
                 case 17: r.biome = ENUM_BIOMES.badlands; break;
                 case 18: r.biome = ENUM_BIOMES.badlands; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
-            }
+            } 
+            break;
         case 1:
             //going right
             switch (y) {
@@ -85,6 +108,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
             }
+            break;
         case 2: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.mountains; break;
@@ -108,6 +132,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
             }
+            break;
         case 3: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.hills; break;
@@ -131,6 +156,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+            break;
         case 4: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.hills; break;
@@ -154,6 +180,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.badlands; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+            break;
         case 5: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.badlands; break;
@@ -177,6 +204,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.plains; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+            break;
         case 6: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.badlands; break;
@@ -200,6 +228,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.plains; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+            break;
         case 7: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.plains; break;
@@ -223,6 +252,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.swamp; break;
                 case 19: r.biome = ENUM_BIOMES.forest; break;
             }
+            break;
         case 8: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.plains; break;
@@ -246,6 +276,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.lake; break;
                 case 19: r.biome = ENUM_BIOMES.lake; break;
             }
+            break;
         case 9: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.lake; break;
@@ -269,6 +300,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.plains; break;
                 case 19: r.biome = ENUM_BIOMES.lake; break;
             }
+            break;
         case 10: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.lake; break;
@@ -292,6 +324,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.plains; break;
                 case 19: r.biome = ENUM_BIOMES.forest; break;
             }
+            break;
         case 11: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.lake; break;
@@ -315,6 +348,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.plains; break;
                 case 19: r.biome = ENUM_BIOMES.mountains; break;
             }
+            break;
         case 12: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.lake; break;
@@ -338,6 +372,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.mountains; break;
                 case 19: r.biome = ENUM_BIOMES.mountains; break;
             }
+            break;
         case 13: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.swamp; break;
@@ -361,6 +396,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.badlands; break;
                 case 19: r.biome = ENUM_BIOMES.mountains; break;
             }
+            break;
         case 14: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.swamp; break;
@@ -384,6 +420,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.badlands; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+            break;
         case 15: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.swamp; break;
@@ -407,6 +444,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.badlands; break;
             }
+            break;
         case 16: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.forest; break;
@@ -430,6 +468,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
             }
+            break;
         case 17: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.plains; break;
@@ -453,6 +492,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
             }
+            break;
         case 18: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.plains; break;
@@ -476,6 +516,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
             }
+            break;
         case 19: 
             switch (y) {
                 case 0: r.biome = ENUM_BIOMES.forest; break;
@@ -499,6 +540,7 @@ const room = (x, y) => {
                 case 18: r.biome = ENUM_BIOMES.dessert; break;
                 case 19: r.biome = ENUM_BIOMES.dessert; break;
             }
+            break;
     }
     setEvents(r)
     return r

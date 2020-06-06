@@ -115,11 +115,6 @@ module.exports = {
         spring: 'Spring',
         summer: 'Summer',
         fall: 'Fall'
-    }
-    ,
-    ENUM_BIOMS: {
-        grassPlains: 'grassPlains',
-        forest: 'forest',
     },
     ENUM_EXPLORE_DIR: {
         north: 'N',
