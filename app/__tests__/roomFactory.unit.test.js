@@ -6,7 +6,7 @@ describe('world.factorys.roomfactories', () => {
         const r = room(0, 0)
         expect(r.biome).toBe(ENUM_BIOMES.mountains)
     })
-    it('should', () => {
+    it('should be plains and have hunting skill check', () => {
         const r = room(12, 12)
         expect(r.biome).toBe(ENUM_BIOMES.plains)
         expect(r.skillChecks[0].skill).toBe(ENUM_SKILL_NAMES.hunting)
