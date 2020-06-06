@@ -155,9 +155,9 @@ module.exports = {
         badlands: 'badlands'
     },
     ENUM_EVENT_TYPE: {
-        restEvent:'rest',
-        travelEvent:'travel',
-        questEvent: ''
+        restEvent:'restEvent',
+        travelEvent:'travelEvent',
+        questEvent: 'questEvent'
     },
     ENUM_CHARACTER_STATUS: {
         dead: 'dead',

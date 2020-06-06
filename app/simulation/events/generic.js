@@ -67,9 +67,6 @@ const rest = (party, biome, season) => {
     }
 }
 
-
-
-
 module.exports = {
     rest
 }

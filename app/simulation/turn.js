@@ -4,6 +4,14 @@ const { getPartyMaxCurHpStamina } = require('../party/party')
 const { rest } = require('../simulation/events/generic')
 const { room } = require('../world/factorys/roomFactory')
 const { getSeason } = require('../world/time')
+const { 
+    ENUM_BIOMES, 
+    ENUM_PERSONALITY_TRAITS, 
+    ENUM_LANGUAGES, 
+    ENUM_RACE_NAMES, 
+    ENUM_SEASONS,
+    ENUM_EVENT_TYPE
+} = require('../../constants')
 
 /**
  * 
@@ -29,11 +37,14 @@ const takeTurn = (party, date) => {
                     restForTheDay = true
             }
         }
+
+
         if (restForTheDay === true) {
             const r = room(party.location[0],party.location[1]);
             rest(party, r.biome, getSeason(date))
-            // TODO ROLL REST EVENT
+            rollEvent(party, date, ENUM_EVENT_TYPE.restEvent, r.biome)
         } else {
+            const i = 0
             // if not rest search for quest => go to town
             // if not quest travel => travel event
             // at goal do quest => quest event
