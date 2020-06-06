@@ -6,6 +6,7 @@ const { buildWorld } = require('../world/world')
 const { findShortestPath } = require('../world/pathFinding')
 const { ENUM_EXPLORE_STATUS } = require('../constants') 
 const { quest } = require('../world/quests/mainQuests')
+const { takeTurn } = require('./turn')
 /**
  * 
  * @param {int} partySize 
@@ -28,12 +29,7 @@ const goOnAdventure = (partySize, yearsToSimulate) => {
     console.log(_party.journey)
 
     
-    // check for rest => rest events (friendship test and actions)
-    // if not rest search for quest => go to town
-    // if not quest travel => travel event
-    // at goal do quest => quest event
-    // check character status and add history
-    // pass day
+    
 
 }
 
