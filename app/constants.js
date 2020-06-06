@@ -153,5 +153,15 @@ module.exports = {
         lake: 'lake',
         dessert: 'dessert',
         badlands: 'badlands'
+    },
+    ENUM_EVENT_TYPE: {
+        restEvent:'rest',
+        travelEvent:'travel',
+        questEvent: ''
+    },
+    ENUM_CHARACTER_STATUS: {
+        dead: 'dead',
+        alive: 'alive',
+        died: 'died'
     }
 }

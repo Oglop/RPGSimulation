@@ -1,4 +1,4 @@
-const { addDay, date, printDate, yearsPassed } = require('../world/time')
+const { addDay, date, printDate, yearsPassed, getSeason } = require('../world/time')
 const { copyObject } = require('../lib/utils')
 
 describe('world.time', () => {
@@ -90,5 +90,23 @@ describe('world.time', () => {
         }
         const i = yearsPassed(startdate, currentdate)
         expect(i).toBe(3)
+    })
+    it('should return summer', () => {
+        const currentdate = {
+            year: 1001,
+            month: 6,
+            day: 7
+        }
+        const s = getSeason(currentdate)
+        expect(s).toBe('Summer')
+    })
+    it('should return winter', () => {
+        const currentdate = {
+            year: 1001,
+            month: 12,
+            day: 7
+        }
+        const s = getSeason(currentdate)
+        expect(s).toBe('Winter')
     })
 });

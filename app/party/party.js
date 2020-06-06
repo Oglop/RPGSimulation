@@ -3,11 +3,13 @@ const { copyObject } = require('../lib/utils')
 const { rollCharacter, print } = require('../controllers/character')
 
 const party = {
+    maxAdventurers: 0,
     adventurers: [],
     location: [9,9],
     quest: {},
     journey: [],
-    food: 0
+    food: 20,
+    coins: 20
 }
 
 const getParty = (partySize) => {

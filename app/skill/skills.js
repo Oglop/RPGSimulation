@@ -1,6 +1,7 @@
-const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES, ENUM_RACE_NAMES } = require('../constants')
+const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES, ENUM_RACE_NAMES, ENUM_CHARACTER_STATUS } = require('../constants')
 const { D20 } = require('../lib/dice');
 const { echo, copyObject } = require('../lib/utils')
+const { checkCharacterStatus } = require('../controllers/character')
 /**
  * skillpoints
  * @param {int} points 
@@ -205,10 +206,6 @@ const scholar = {
     masteryPoints: 0
 }
 
-const getSkills = character => {
-
-}
-
 const addSkillPoint = (skill, points) => {
     skill.masteryPoints += points
 }
@@ -251,8 +248,41 @@ const skillCheck = (character, skill, luckTest) => {
     }
     return success;
 }
+/**
+ * returns array of every succeeding charcter object
+ * @param {object} party 
+ * @param {string} skillId 
+ */
+const testPartyForSkill = (party, skillId) => {
+    const successes = []
+    for (const character of party.adventurers) {
+        if (checkCharacterStatus(character) === ENUM_CHARACTER_STATUS.alive) {
+            for (const skill of character.skills) {
+                if (skill.name === skillId) {
+                    const success = skillCheck(character, skill, skill.luckTest)
+                    if (success === true) { successes.push(character) }
+                }
+            }
+        }
+    }
+    return successes
+}
+/**
+ * returns skill object of character by id
+ * @param {object} character 
+ * @param {string} skillId 
+ */
+const getSkillFromChracter = (character, skillId) => {
+    for (const skill of character.skills) {
+        if (skill.name === skillId) {
+            return skill
+        }
+    }
+}
 
-
+const addMasteryOnSuccess = (skill) => {
+    skill.masteryPoints += 1
+}
 
 const skillsFactory = (character) => {
     let skills = []
@@ -290,7 +320,13 @@ const print = (skill) => {
 }
 
 module.exports = {
-    skillCheck, print, addSkillPoint, getSkills, skillsFactory
+    skillCheck, 
+    print, 
+    addSkillPoint, 
+    skillsFactory,
+    getSkillFromChracter,
+    testPartyForSkill,
+    addMasteryOnSuccess
 }
 
 

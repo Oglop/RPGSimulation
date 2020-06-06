@@ -2,6 +2,13 @@ const { languageCheck, testLangauge, tryToUnderstandEachOther } = require('../la
 const { ENUM_LANGUAGES, ENUM_RACE_NAMES, ENUM_JOB_NAMES, ENUM_STAT_NAMES } = require('../constants')
 jest.mock('../lib/dice')
 
+/*
+const mockMath = Object.create(global.Math);
+mockMath.random = () => 0.5;
+global.Math = mockMath;
+ */
+
+
 describe('language.languages', () => {
     it('should be an instance of a function', () => {
         expect(languageCheck).toBeInstanceOf(Function)

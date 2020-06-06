@@ -81,6 +81,10 @@ const printDate = date => {
     echo(`${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`)
 }
 
+const getSeason = (date) => {
+    return months[date.month - 1].season
+}
+
 module.exports = {
-    date, addDay, printDate,yearsPassed
+    date, addDay, printDate, yearsPassed, getSeason
 }

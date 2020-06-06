@@ -1,12 +1,20 @@
 const { rollJob } = require('../job/jobs');
 const { rollRace } = require('../race/races');
 const { getCharacterName } = require('../lib/nameRoller');
-const { STATS_MIN_VALUE, STATS_MIN_SUM, STATS_MAX_ROLLABLE,HP_BASE,HP_VITALITY_INCREASE,ENUM_BODY_PART } = require('../constants');
+const { 
+    STATS_MIN_VALUE, 
+    STATS_MIN_SUM, 
+    STATS_MAX_ROLLABLE,
+    HP_BASE,
+    HP_VITALITY_INCREASE,
+    ENUM_BODY_PART,
+    ENUM_CHARACTER_STATUS } = require('../constants');
 const skills = require('../skill/skills')
 const { languageFactory,getLanguageSkollLevelText } = require('../language/languages')
 const { getEquipment } = require('../items/equipment')
 const { getPersonality } = require('../relationships/personality')
 const { echo, copyObject } = require('../lib/utils')
+const { D4, D6, D8, D10, D12, D20 } = require('../../lib/dice')
 
 const print = character => {
     echo(`¤~---------- PROFILE ----------~¤`)
@@ -75,6 +83,8 @@ const applyStatTraits = (stats, traits) => {
 const rollCharacter = () => {
     const character = {
         level:1,
+        status: ENUM_CHARACTER_STATUS.alive,
+        history: [],
         name: getCharacterName(),
         stats: rollStats(),
         jobs: [ rollJob() ],
@@ -124,7 +134,62 @@ const rollCharacter = () => {
     c.currentStamina = c.maxStamina
     return c
 }
+/**
+ * ADd HP
+ * @param {object} character 
+ * @param {int} amount 
+ */
+const healCharacter = (character, amount) => {
+    if (character.currentHP > 0) {
+        character.currentHP += amount;
+        character.currentHP = (character.currentHP > character.maxHP) ? character.currentHP : character.maxHP
+    }
+}
+/**
+ * Add stamina
+ * @param {object} character 
+ * @param {int} amount 
+ */
+const restCharacter = (character, amount) => {
+    if (character.currentStamina > 0) {
+        character.currentStamina += amount;
+        character.currentStamina = (character.currentStamina > character.maxStamina) ? character.currentStamina : character.maxStamina
+    }
+}
+/**
+ * sub HP
+ * @param {object} character 
+ * @param {int} amount 
+ */
+const damageCharacter = (character, amount) => {
+    character.currentHP -= amount;
+}
+/**
+ * sub Stamina
+ * @param {object} character 
+ * @param {int} amount 
+ */
+const exhaustCharacter = (character, amount) => {
+    character.currentStamina -= amount;
+}
+
+const checkCharacterStatus = character => {
+    if (character.status === ENUM_CHARACTER_STATUS.alive) {
+        if (character.currentHP <= 0) {
+            character.status = ENUM_CHARACTER_STATUS.dead
+            return ENUM_CHARACTER_STATUS.died
+        }
+    }
+    return character.status
+}
 
 module.exports = {
-    print, rollCharacter, printShort
+    print, 
+    rollCharacter, 
+    printShort, 
+    healCharacter, 
+    checkCharacterStatus, 
+    restCharacter, 
+    damageCharacter, 
+    exhaustCharacter
 }

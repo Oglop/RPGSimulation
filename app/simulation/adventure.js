@@ -15,15 +15,26 @@ const goOnAdventure = (partySize, yearsToSimulate) => {
     const now = copyObject(date)
     echo(`Once upon a time`)
     printDate(now)
+    
     let _party = getParty(partySize)
     for(let i = 0; i < _party.adventurers.length; i++) {
         print( _party.adventurers[i])
     }
     _party.quest = quest
+    _party.maxAdventurers = partySize
     //grid[0][0] = ENUM_EXPLORE_STATUS.start;
     grid[_party.quest.goalCoordinates[0]][_party.quest.goalCoordinates[1]] = ENUM_EXPLORE_STATUS.goal;
     _party.journey = findShortestPath(_party.location, grid)
     console.log(_party.journey)
+
+    
+    // check for rest => rest events (friendship test and actions)
+    // if not rest search for quest => go to town
+    // if not quest travel => travel event
+    // at goal do quest => quest event
+    // check character status and add history
+    // pass day
+
 }
 
 
