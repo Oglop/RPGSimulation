@@ -13,8 +13,8 @@ const skills = require('../skill/skills')
 const { languageFactory,getLanguageSkollLevelText } = require('../language/languages')
 const { getEquipment } = require('../items/equipment')
 const { getPersonality } = require('../relationships/personality')
-const { echo, copyObject } = require('../lib/utils')
-const { D4, D6, D8, D10, D12, D20 } = require('../../lib/dice')
+const { echo, copyObject, generateID } = require('../lib/utils')
+const { D4, D6, D8, D10, D12, D20 } = require('../lib/dice')
 
 const print = character => {
     echo(`¤~---------- PROFILE ----------~¤`)
@@ -92,6 +92,7 @@ const rollCharacter = () => {
         personality: {},
         skills: [],
         languages: [],
+        knownPersons: [],
         maxHP: 0,
         currentHP: 0,
         maxStamina: 0,
@@ -122,6 +123,7 @@ const rollCharacter = () => {
 
     }
     let c = character
+    c.id = generateID()
     c.skills = skills.skillsFactory(character)
     c.stats =  applyStatTraits(c.stats, c.race.statTraits)
     c.stats =  applyStatTraits(c.stats, c.jobs[0].statTraits)

@@ -36,8 +36,16 @@ const storyTime = (party) => {
 
 const argument = (party) => {
     echo(` At night the party starts arguing about the goal of their journey.`)
+    // TODO freindship ...
 }
 
+const traveler = (party) => {
+    echo(` At night the party starts arguing about the goal of their journey.`)
+    // TODO freindship ...
+}
+
+
+
 module.exports = {
-    darkNight, perfectSleep, storyTime
+    darkNight, perfectSleep, storyTime, traveler, argument
 }

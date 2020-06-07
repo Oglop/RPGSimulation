@@ -10,7 +10,16 @@ const getPercetage = (total, part) => {
     return Math.floor((part / total) * 100)
 }
 
+const generateID = () => {
+    let result           = '';
+    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 10; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+ }
+
 
 module.exports = {
-    copyObject, echo, getPercetage
+    copyObject, echo, getPercetage, generateID
 }

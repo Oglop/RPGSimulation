@@ -12,8 +12,8 @@ const {
     ENUM_RACE_NAMES, 
     ENUM_SEASONS,
     ENUM_EVENT_TYPE
-} = require('../../constants')
-
+} = require('../constants')
+const { doFriendshipCalculation } = require('../relationships/relation')
 /**
  * 
  * @param {object} party 
@@ -60,11 +60,13 @@ const takeTurn = (party, date) => {
 
             // at goal do quest => quest event
         }
+
+
     }
     
 
     
-    
+    doFriendshipCalculation(party)
     
     // check character status and add history
     // pass day

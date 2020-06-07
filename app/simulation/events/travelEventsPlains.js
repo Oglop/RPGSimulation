@@ -44,7 +44,7 @@ const rainStorm = (party, date, eventType, biome) => {
  * @param {ENUM_EVENT_TYPE} eventType 
  * @param {ENUM_BIOMES} biome 
  */
-const ruins = () => {
+const ruins = (party, date, eventType, biome) => {
 
 }
 /**
@@ -54,7 +54,7 @@ const ruins = () => {
  * @param {ENUM_EVENT_TYPE} eventType 
  * @param {ENUM_BIOMES} biome 
  */
-const stream = () => {
+const stream = (party, date, eventType, biome) => {
     echo(`The party comes across a small stream of water`)
     const fishSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.fishing)
     for (const c of fishSuccess) {
@@ -64,7 +64,56 @@ const stream = () => {
     return ENUM_TRAVEL_RESULTS.allGood
 }
 
+const fruitTrees = (party, date, eventType, biome) => {
+    echo(`The party comes across a old fruit tree`)
+    seaseon = getSeason(date)
+    if (seaseon === ENUM_SEASONS.summer || seaseon === ENUM_SEASONS.fall) {
+        echo(` The party gather some low hanging fruit`)
+        party.food += D6()
+    } else {
+        echo(` During summer and fall this would be a great place to gather food, now there is no fruit`)
+    }
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const travelingMerchant = (party, date, eventType, biome) => {
+
+
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const outlaws = (party, date, eventType, biome) => {
+
+
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const campsite = (party, date, eventType, biome) => {
+
+
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const river = (party, date, eventType, biome) => {
+
+
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const sometingSmells = (party, date, eventType, biome) => {
+
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
 
 module.exports = {
-
+    rainStorm,
+    ruins,
+    stream,
+    fruitTrees,
+    travelingMerchant,
+    outlaws,
+    campsite,
+    river,
+    sometingSmells
 }

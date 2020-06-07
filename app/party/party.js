@@ -1,7 +1,7 @@
-const {} = require('../constants')
 const { copyObject } = require('../lib/utils')
 const { rollCharacter, print } = require('../controllers/character')
 const { ENUM_CHARACTER_STATUS } = require('../constants')
+const { setPartyKnowEachOther } = require('../relationships/relation')
 
 const party = {
     maxAdventurers: 0,
@@ -23,6 +23,7 @@ const getParty = (partySize) => {
         p.adventurers.push(c)
     }
     p.food = partySize * 5
+    setPartyKnowEachOther(p)
     return p
 }
 /**
