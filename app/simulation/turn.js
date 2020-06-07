@@ -3,6 +3,7 @@ const { getPercetage } = require('../lib/utils')
 const { getPartyMaxCurHpStamina } = require('../party/party')
 const { rest } = require('../simulation/events/generic')
 const { room } = require('../world/factorys/roomFactory')
+const { checkIfLost, move } = require('../world/travel')
 const { getSeason } = require('../world/time')
 const { 
     ENUM_BIOMES, 
@@ -46,7 +47,17 @@ const takeTurn = (party, date) => {
         } else {
             const i = 0
             // if not rest search for quest => go to town
-            // if not quest travel => check for getting lost ? => travel event
+            
+            if (party.journey.length <= 0) {
+
+            } else {
+                // if not quest travel => check for getting lost ? => travel event
+                const lost = checkIfLost(party, r.biome)
+                if (lost === false) {
+                    move(party)
+                }
+            }
+
             // at goal do quest => quest event
         }
     }

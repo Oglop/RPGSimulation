@@ -39,12 +39,12 @@ const checkIfLost = (party, biome) => {
     // TODO ADD ROADS
     let difficulty = 0
     switch(biome) {
-        case ENUM_BIOMES.badlands: difficulty = 8; break;
+        case ENUM_BIOMES.badlands: difficulty = 6; break;
         case ENUM_BIOMES.dessert: difficulty = 10; break;
         case ENUM_BIOMES.forest: difficulty = 8; break;
-        case ENUM_BIOMES.hills: difficulty = 12; break;
+        case ENUM_BIOMES.hills: difficulty = 10; break;
         case ENUM_BIOMES.lake: difficulty = 0; break;
-        case ENUM_BIOMES.mountains: difficulty = 14; break;
+        case ENUM_BIOMES.mountains: difficulty = 12; break;
         case ENUM_BIOMES.plains: difficulty = 4; break;
         case ENUM_BIOMES.swamp: difficulty = 6; break;
     }

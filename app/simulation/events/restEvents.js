@@ -22,6 +22,22 @@ const perfectSleep = (party) => {
     }
 }
 
+const storyTime = (party) => {
+    const c = getRandomCharacter(party, false)
+    echo(` At night ${c.name} begins telling a story.`)
+    if (D20() <= c.stats.charm) {
+        echo(` A heroic tale unfolds captivating the audience.`)
+        party.mood += D4()
+        if (party.mood > 20) { party.mood = 20 }
+    } else {
+        echo(` The story seems to be going nowhere and eventually the party goes to sleep.`)
+    }
+}
+
+const argument = (party) => {
+    echo(` At night the party starts arguing about the goal of their journey.`)
+}
+
 module.exports = {
-    darkNight, perfectSleep
+    darkNight, perfectSleep, storyTime
 }

@@ -10,7 +10,10 @@ const party = {
     quest: {},
     journey: [],
     food: 20,
-    coins: 20
+    coins: 20,
+    mood: 15,
+    reputation: 0,
+    history: []
 }
 
 const getParty = (partySize) => {

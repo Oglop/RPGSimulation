@@ -163,5 +163,9 @@ module.exports = {
         dead: 'dead',
         alive: 'alive',
         died: 'died'
+    },
+    ENUM_TRAVEL_RESULTS: {
+        allGood: 'allGood',
+        noTravel: 'noTravel'
     }
 }
