@@ -83,6 +83,13 @@ const getRandomCharacter = (party, allowDead) => {
     return {}
 }
 
+const bury = party => {
+
+}
+
 module.exports = {
-    getParty, getPartyMaxCurHpStamina, getRandomCharacter
+    getParty, 
+    getPartyMaxCurHpStamina, 
+    getRandomCharacter,
+    bury
 }

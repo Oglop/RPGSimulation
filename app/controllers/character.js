@@ -19,6 +19,7 @@ const { D4, D6, D8, D10, D12, D20 } = require('../lib/dice')
 const print = character => {
     echo(`¤~---------- PROFILE ----------~¤`)
     echo(`${character.name} lv ${character.level}, the ${character.personality.trait} ${character.race.name} ${character.jobs[0].name}`)
+    echo(` ID: ${character.id}`)
     echo(` HP: ${character.maxHP}/${character.currentHP}`)
     echo(` MP: ${character.maxStamina}/${character.currentStamina}`)
     echo(`STATS: ${JSON.stringify(character.stats)}`)
@@ -83,6 +84,7 @@ const applyStatTraits = (stats, traits) => {
 const rollCharacter = () => {
     const character = {
         level:1,
+        id:'',
         status: ENUM_CHARACTER_STATUS.alive,
         history: [],
         name: getCharacterName(),
