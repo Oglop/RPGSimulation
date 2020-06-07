@@ -8,6 +8,7 @@ const {
 } = require('../../constants')
 const { getSeason } = require('../../world/time')
 const restEvents = require('./restEvents')
+const travelEventsPlains = require('./travelEventsPlains')
 
 /**
  * 
@@ -20,11 +21,21 @@ const rollEvent = (party, date, eventType, biome) => {
     if (eventType === ENUM_EVENT_TYPE.restEvent) {
         const i = Math.floor( 1 + Math.random() * 100)
         switch (i) {
-            case 1: restEvents.darkNight(party); break;
+            case 0: restEvents.darkNight(party); break;
             case 2: restEvents.perfectSleep(party); break;
+            case 3: restEvents.storyTime(party); break;
+            case 4: restEvents.traveler(party); break;
+        }
+        return
+    }
+    
+    if (eventType === ENUM_EVENT_TYPE.travelEvent && biome === ENUM_BIOMES.plains) {
+        const i = Math.floor( 1 + Math.random() * 100)
+        switch (i) {
+            case 0: return travelEventsPlains.rainStorm(party, date, eventType, biome)
+            case 1: return travelEventsPlains.stream(party, date, eventType, biome)
         }
     }
-    return
 }
 
 module.exports = {

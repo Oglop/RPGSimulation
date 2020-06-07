@@ -257,6 +257,7 @@ const skillCheck = (character, skill, luckTest) => {
 }
 /**
  * returns array of every succeeding charcter object
+ * Adds mastery on success
  * @param {object} party 
  * @param {string} skillId 
  */
@@ -267,7 +268,10 @@ const testPartyForSkill = (party, skillId) => {
             for (const skill of character.skills) {
                 if (skill.name === skillId) {
                     const success = skillCheck(character, skill, skill.luckTest)
-                    if (success === true) { successes.push(character) }
+                    if (success === true) { 
+                        addMasteryOnSuccess(skill)
+                        successes.push(character) 
+                    }
                 }
             }
         }

@@ -3,6 +3,8 @@ const { testPartyForSkill } = require('../../skill/skills')
 const { getRandomCharacter } = require('../../party/party')
 const { exhaustCharacter, restCharacter } = require('../../controllers/character')
 const { D4, D6, D8, D10, D12, D20 } = require('../../lib/dice')
+const { decreaseTraitFromTrait } = require('../../relationships/relation')
+const { ENUM_PERSONALITY_TRAITS } = require('../../constants')
 
 /**
  * 
@@ -36,7 +38,7 @@ const storyTime = (party) => {
 
 const argument = (party) => {
     echo(` At night the party starts arguing about the goal of their journey.`)
-    // TODO freindship ...
+    decreaseTraitFromTrait(party, ENUM_PERSONALITY_TRAITS.egoistic, ENUM_PERSONALITY_TRAITS.loudmouth)
 }
 
 const traveler = (party) => {

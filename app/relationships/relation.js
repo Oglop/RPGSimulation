@@ -65,6 +65,12 @@ const increaseTraitFromTrait = (party, traitFrom, traitTo) => {
         }
     }
 }
+/**
+ * but when?
+ */
+const isFriends = () => {
+
+}
 
 module.exports = {
     setPartyKnowEachOther, 

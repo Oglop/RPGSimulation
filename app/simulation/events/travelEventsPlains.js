@@ -95,9 +95,35 @@ const campsite = (party, date, eventType, biome) => {
 }
 
 const river = (party, date, eventType, biome) => {
-
-
-    return ENUM_TRAVEL_RESULTS.allGood
+    echo(`The party comes across a river`)
+    seaseon = getSeason(date)
+    if (seaseon === ENUM_SEASONS.winter) {
+        echo(` The river is frozen and the party crosses over the ice.`)
+        return ENUM_TRAVEL_RESULTS.allGood
+    } else if (seaseon === ENUM_SEASONS.spring) {
+        echo(` The melting ice from the mountains has caused the river to overflow. The party searches upsteam for a place to cross`)
+        return ENUM_TRAVEL_RESULTS.noTravel
+    } else {
+        const scoutSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.scout)
+        if (scoutSuccess.length > 0) {
+            echo(` After scouting the surroundings ${scoutSuccess[0].name} finds a possible crossing`)
+            const swimSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.swim)
+            if (swimSuccess.length > 0) {
+                echo(` ${swimSuccess[0].name} crosses the river securing a path for the others to follow`)
+                return ENUM_TRAVEL_RESULTS.allGood
+            }
+            const woodSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.woodWorking)
+                if (woodSuccess.length > 0) {
+                    echo(` ${woodSuccess[0].name} gathers some dry logs making a raft`)
+                    return ENUM_TRAVEL_RESULTS.allGood
+                }
+        } else {  
+            echo(` Without finding a place to cross the party searches upstream for a place to cross`)
+            return ENUM_TRAVEL_RESULTS.noTravel
+        }
+    }
+    echo(` Failing all options the party searches upstream for a place to cross.`)
+    return ENUM_TRAVEL_RESULTS.noTravel
 }
 
 const sometingSmells = (party, date, eventType, biome) => {
