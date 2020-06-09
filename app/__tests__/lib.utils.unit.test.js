@@ -1,4 +1,4 @@
-const { getPercetage, copyObject } = require('../lib/utils')
+const { getPercetage, copyObject, copyArray } = require('../lib/utils')
 
 describe('lib/util', () => {
     it('should return 50 percent', () => {
@@ -17,5 +17,12 @@ describe('lib/util', () => {
         o2.status = 'bar'
         expect(o1.status).toBe('foo')
         expect(o2.status).toBe('bar')
+    })
+    it('should return a copy of the original array', () => {
+        const a1 = ['x']
+        const a2 = copyArray(a1)
+        a2[0] = 'y'
+        expect(a1[0]).toBe('x')
+        expect(a2[0]).toBe('y')
     })
 })

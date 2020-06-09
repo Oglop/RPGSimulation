@@ -1,4 +1,4 @@
-const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES, ENUM_RACE_NAMES, ENUM_CHARACTER_STATUS } = require('../constants')
+const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES, ENUM_RACE_NAMES, ENUM_CHARACTER_STATUS, ENUM_STATS } = require('../constants')
 const { D20 } = require('../lib/dice');
 const { echo, copyObject } = require('../lib/utils')
 const { checkCharacterStatus } = require('../controllers/character')
@@ -256,6 +256,41 @@ const skillCheck = (character, skill, luckTest) => {
     return success;
 }
 /**
+ * 
+ * @param {object} character 
+ * @param {ENUM_STAT_NAMES} stat 
+ * @param {int} mod 
+ */
+const statsCheck = (character, stat, modifier) => {
+    let success = false;
+    if (stat === ENUM_STAT_NAMES.strength) {
+        const str = (character.stats.strength + modifier <= 19) ? character.stats.strength + modifier : 19
+        if(D20() <= str) { success = true }
+    } else if (stat === ENUM_STAT_NAMES.agility) {
+        const agi = (character.stats.agility + modifier <= 19) ? character.stats.agility + modifier : 19
+        if(D20() <= agi) { success = true }
+    } else if (stat === ENUM_STAT_NAMES.vitality) {
+        const vit = (character.stats.vitality + modifier <= 19) ? character.stats.vitality + modifier : 19
+        if(D20() <= vit) { success = true }
+    } else if (stat === ENUM_STAT_NAMES.intelligence) {
+        const int = (character.stats.intelligence + modifier <= 19) ? character.stats.intelligence + modifier : 19
+        if(D20() <= int) { success = true }
+    } else if (stat === ENUM_STAT_NAMES.wisdom) {
+        const wis = (character.stats.wisdom + modifier <= 19) ? character.stats.wisdom + modifier : 19
+        if(D20() <= wis) { success = true }
+    } else if (stat === ENUM_STAT_NAMES.luck) {
+        const luck = (character.stats.luck + modifier <= 19) ? character.stats.luck + modifier : 19
+        if(D20() <= luck) { success = true }
+    } else if (stat === ENUM_STAT_NAMES.charm) {
+        const charm = (character.stats.charm + modifier <= 19) ? character.stats.charm + modifier : 19
+        if(D20() <= charm) { success = true }
+    }
+    if(luckTest === true) {
+        if(D20() <= (Math.floor((character.stats.luck) * 0.5))) { success = true }
+    }
+    return success;
+}
+/**
  * returns array of every succeeding charcter object
  * Adds mastery on success
  * @param {object} party 
@@ -337,7 +372,8 @@ module.exports = {
     skillsFactory,
     getSkillFromChracter,
     testPartyForSkill,
-    addMasteryOnSuccess
+    addMasteryOnSuccess,
+    statsCheck
 }
 
 

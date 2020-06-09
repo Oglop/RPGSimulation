@@ -2,6 +2,10 @@ const copyObject = (o) => {
     return JSON.parse(JSON.stringify(o))
 } 
 
+const copyArray = arr => {
+    return [...arr]
+}
+
 const echo = s => {
     console.log(s)
 }
@@ -22,5 +26,5 @@ const generateID = () => {
 
 
 module.exports = {
-    copyObject, echo, getPercetage, generateID
+    copyObject, echo, getPercetage, generateID, copyArray
 }

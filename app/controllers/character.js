@@ -93,6 +93,7 @@ const rollCharacter = () => {
         race: rollRace(),
         personality: {},
         skills: [],
+        spells: [],
         languages: [],
         knownPersons: [],
         maxHP: 0,

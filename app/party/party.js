@@ -6,6 +6,7 @@ const { setPartyKnowEachOther } = require('../relationships/relation')
 const party = {
     maxAdventurers: 0,
     adventurers: [],
+    fallen: [],
     location: [9,9],
     quest: {},
     journey: [],
