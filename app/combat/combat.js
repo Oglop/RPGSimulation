@@ -53,7 +53,7 @@ const fight = (party, enemies) => {
     party.adventurers = copyArray(h.alive)
     if (heroesWin === true) {
         // roll treasure
-        
+
     }
     
     
@@ -108,7 +108,7 @@ const getAliveAndFallenMonsters = col => {
         fallen: col.fallen
     }
     for (const c in col.enemies) {
-        if (checkCharacterStatus(c) !== ENUM_CHARACTER_STATUS.alive) {
+        if (checkEnemyStatus(c) !== ENUM_CHARACTER_STATUS.alive) {
             o.fallen.push(c)
         } else {
             o.alive.push(c)
