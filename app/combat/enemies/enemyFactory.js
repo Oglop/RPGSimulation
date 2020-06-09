@@ -2,15 +2,7 @@ const { copyObject, generateID } = require('../../lib/utils')
 const { ENUM_EQUIPMENT_TYPE, ENUM_DICE, ENUM_CHARACTER_STATUS } = require('../../constants')
 const { D4, D6 } = require('../../lib/dice')
 const { getPronounce } = require('./pronounce')
-
-const enemy = {
-    name: '',
-    id: '',
-    status: '',
-    attackDice: '',
-    HP: 0,
-    MP: 0
-}
+const { enemy } = require('./enemy')
 
 const getEnemyParty = (partySize, biome) => {
     const enemyParty = {
@@ -35,7 +27,7 @@ const goblins = enemyParty => {
         const e = copyObject(enemy)
         e.name = `${getPronounce()} goblin`
         e.id = generateID()
-        e.HP = 10 + D6()
+        e.HP = 5 + D6()
         e.MP = 0
         e.attackDice = ENUM_DICE.D4
         e.status = ENUM_CHARACTER_STATUS.alive
@@ -44,7 +36,6 @@ const goblins = enemyParty => {
     e.wealth = 2
     return enemyParty
 }
-
 
 module.exports = {
     getEnemyParty

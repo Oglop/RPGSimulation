@@ -182,6 +182,7 @@ const checkCharacterStatus = character => {
     if (character.status === ENUM_CHARACTER_STATUS.alive) {
         if (character.currentHP <= 0) {
             character.status = ENUM_CHARACTER_STATUS.dead
+            echo(`${character.name} falls to the ground.`)
             return ENUM_CHARACTER_STATUS.died
         }
     }
