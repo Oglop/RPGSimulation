@@ -359,7 +359,11 @@ const skillsFactory = (character) => {
     }
     return skills
 }
-
+const findSkill = (character, eSkill) => {
+    const skill = character.skills.find(e => e.name === eSkill)
+    return skill
+}
+ 
 
 const print = (skill) => {
     echo(`${mastery(skill.masteryPoints)} ${skill.printable}`)
@@ -373,7 +377,8 @@ module.exports = {
     getSkillFromChracter,
     testPartyForSkill,
     addMasteryOnSuccess,
-    statsCheck
+    statsCheck,
+    findSkill
 }
 
 

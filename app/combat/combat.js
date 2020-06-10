@@ -1,8 +1,8 @@
-const { statsCheck, testPartyForSkill } = require('../skill/skills')
-const { ENUM_STAT_NAMES, ENUM_SKILL_NAMES, ENUM_CHARACTER_STATUS } = require('../constants')
-const { getPercetage, copyObject, copyArray } = require('../lib/utils')
+const { statsCheck, testPartyForSkill, skillCheck, findSkill } = require('../skill/skills')
+const { ENUM_STAT_NAMES, ENUM_SKILL_NAMES, ENUM_CHARACTER_STATUS, ENUM_DICE } = require('../constants')
+const { getPercetage, copyObject, copyArray, getRandomElement, echo } = require('../lib/utils')
 const { getEnemyParty } = require('./enemies/enemyFactory')
-const { D6, D8, D10 } = require('../lib/dice')
+const { getDiceByEnum } = require('../lib/dice')
 const { checkCharacterStatus } = require('../controllers/character')
 const { checkEnemyStatus } = require('./enemies/enemy')
 
@@ -24,7 +24,7 @@ const fight = (party, enemies) => {
     while (fightContinues) {
 
         // do fight rounds
-
+        fightingRound(h, e)
         // check for deaths
         h = copyObject( getAliveAndFallenHeroes(h) )
         e = copyObject( getAliveAndFallenMonsters(e) )
@@ -82,9 +82,6 @@ const freeShots = (party, enemies) => {
     if (archerSuccesses.length > 0) {
         
     }
-    
-
-
 }
 
 const getAliveAndFallenHeroes = col => {
@@ -116,6 +113,49 @@ const getAliveAndFallenMonsters = col => {
     }
     return o
 }
+
+const fightingRound = (party, enemyParty) => {
+    const arr = []
+    for (const c of party.adventurers) {
+        arr.push({type: 'c', id: c.id})
+    }
+    for (const e of enemyParty.enemies) {
+        arr.push({type: 'e', id: e.id})
+    }
+    arr = shuffle(arr)
+    for ( const el of arr ) {
+        if ( el.type === 'c' ) {
+            const enemy = getRandomElement(enemyParty)
+            const sk = findSkill(el.equipment.rightHand.item.skill)
+            if (skillCheck(el, sk, sk.luckTest)) {
+                const dice = getDiceByEnum(el.equipment.rightHand.item.attack)
+                enemy.HP -= dice()
+                echo(`${el.equipment.rightHand.item.effects.hit} ${enemy.name}`)
+            }
+            else {
+                echo(`${el.equipment.rightHand.item.effects.miss}`)
+            }
+        } else {
+            const character = getRandomElement(party)
+            
+        }
+    }
+}
+
+const shuffle = array => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
 
 
 module.exports = {

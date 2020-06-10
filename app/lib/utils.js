@@ -24,7 +24,11 @@ const generateID = () => {
     return result;
  }
 
+ const getRandomElement = col => {
+    const i = Math.floor(Math.random() * col.length)
+    return col[i]
+}
 
 module.exports = {
-    copyObject, echo, getPercetage, generateID, copyArray
+    copyObject, echo, getPercetage, generateID, copyArray, getRandomElement
 }

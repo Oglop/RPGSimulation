@@ -24,5 +24,5 @@ const checkEnemyStatus = enemy => {
 }
 
 module.exports = {
-    checkEnemyStatus, enemy
+    checkEnemyStatus, enemy 
 }
