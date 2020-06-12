@@ -13,6 +13,8 @@ const { healCharacter, checkCharacterStatus, restCharacter, damageCharacter, exh
 const { getSkillFromChracter, testPartyForSkill, addMasteryOnSuccess } = require('../../skill/skills')
 const { echo } = require('../../lib/utils')
 const { getSeason } = require('../../world/time')
+const { treasureRoll } = require('../../world/treasure')
+const { partyContainsPersonality, partyContainsRace } = require('../../party/party')
 /**
  * 1
  * @param {object} party 
@@ -130,6 +132,87 @@ const sometingSmells = (party, date, eventType, biome) => {
     return ENUM_TRAVEL_RESULTS.allGood
 }
 
+const farm = (party) => {
+    const i = D4()
+    if (i === 1) {
+          echo(`An abandoned farm.`)
+          const scoutSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.scout)
+          if (scoutSuccess.length > 0) {
+              echo(` In the back of the barn ${scoutSuccess[0].name} finds a locked chest.`)
+              const lockSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.lockPicking)
+              if (lockSuccess.length > 0) { 
+                  echo(` ${lockSuccess[0].name} successfully pick the lock revealing a minor treasure.`)
+                  party.coins += treasureRoll(3)
+              }
+          }
+          return ENUM_TRAVEL_RESULTS.allGood
+      } else if (i === 2) {
+          echo(`You come across a farm, the farmers family is starving.`)
+          const i = D6()
+          echo(` The farmer and his wife beggs you for ${i} food.`)
+          if (party.food < i) {
+              echo(` The party does not have the food to give and continues on it journey.`)
+              return ENUM_TRAVEL_RESULTS.allGood
+          }
+          colEgo = partyContainsPersonality(party, ENUM_PERSONALITY_TRAITS.egoistic)
+          if(colEgo.length > 0) {
+              echo(` ${colEgo[0].name} refuses to give the food.`)
+              party.reputation -= D4()
+              echo(` The party continues on it journey.`)
+              return ENUM_TRAVEL_RESULTS.allGood
+          }
+          echo(` The party shares the food. The farmer and his family swears to repay them one day.`)
+          party.food -= i
+          party.reputation += D4()
+          return ENUM_TRAVEL_RESULTS.allGood
+  
+      } else if (i === 3) {
+          echo(`You come across a farm, the farmer greets you.`)
+          
+          echo(` The farmer offers the party to spend the night in the barn.`)
+          colLoud = partyContainsPersonality(party, ENUM_PERSONALITY_TRAITS.loudmouth)
+          if(colLoud.length > 0) { 
+              echo(` During dinner ${colLoud[0].name} manages to insult the farmers wife.`)
+              echo(` You are asked to leave. The party continues on it journey.`)
+              return ENUM_TRAVEL_RESULTS.allGood
+          }
+          let healPoints = D6()
+          let restPoints = D20()
+          party.food = 0
+          for (c of party.adventurers) {
+              damageCharacter(c, healPoints)
+              restCharacter(c, restPoints)
+          }
+          echo(` The party leaves the farm in the morning feeling refreshed.`)
+          return ENUM_TRAVEL_RESULTS.allGood
+      } else {
+          const stole = false
+          echo(`You come across a wealthy farm, the farmer greets you.`)
+          echo(` The farmer offers the party to spend the night in the barn.`)
+          
+          const col = testPartyForSkill(party, ENUM_SKILL_NAMES.steal) 
+          if (col.length > 0) {
+              const i = treasureRoll(10)
+              echo(` During the night ${col[0].name} sneaks out stealing ${i} coins.`)
+              stole = true
+              party.coin += i
+          }
+          let healPoints = D6()
+          let restPoints = D20()
+          party.food = 0
+          for (c of party.adventurers) {
+              damageCharacter(c, healPoints)
+              restCharacter(c, restPoints)
+          }
+          echo(` The party leaves the farm in the morning feeling refreshed.`)
+          if (stole === true) {
+              echo(` The farmer notices his missing coin but you are long gone.`)
+              party.reputation -= D6()
+          }
+          return ENUM_TRAVEL_RESULTS.allGood
+      }
+  }
+
 
 module.exports = {
     rainStorm,
@@ -140,5 +223,6 @@ module.exports = {
     outlaws,
     campsite,
     river,
-    sometingSmells
+    sometingSmells,
+    farm
 }
