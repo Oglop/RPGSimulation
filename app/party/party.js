@@ -8,7 +8,7 @@ const party = {
     adventurers: [],
     fallen: [],
     location: [9,9],
-    quest: {},
+    quest: [],
     journey: [],
     food: 20,
     coins: 20,

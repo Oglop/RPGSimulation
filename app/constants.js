@@ -180,5 +180,16 @@ module.exports = {
         heal: 'heal',
         protection:'protection',
         trueSight:'trueSight'
+    },
+    ENUM_QUESTS: {
+        rumorsOfLostCaravan: 'rumorsOfLostCaravan',
+        rumorsOfRuins:'rumorsOfRuins',
+        rumorsOfMagic:'rumorsOfMagic',
+        rumorsOfTreasure: 'rumorsOfTreasure',
+        rumorsOfMonster: 'rumorsOfMonster'
+    },
+    ENUM_QUEST_STATUS: {
+        ONGOING: 0,
+        COMPLETED: 1
     }
 }
