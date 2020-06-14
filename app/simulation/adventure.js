@@ -14,6 +14,7 @@ const { getStoryPoint } = require('../world/legend')
  */
 const goOnAdventure = (partySize, yearsToSimulate) => {
     const runId = generateID()
+    console.log(`ID: ${runId}`)
     const grid = buildWorld()
     const now = copyObject(date)
     echo(getStoryPoint(1), runId)

@@ -5,23 +5,23 @@ const { ENUM_SEASONS } = require('../constants')
  * Months year is 245 days
  */
 const months = [
-    { name:'Ice', numberOfDays: 21, season: ENUM_SEASONS.winter },
-    { name:'Wind', numberOfDays: 20, season: ENUM_SEASONS.winter },
-    { name:'Sun', numberOfDays: 21, season: ENUM_SEASONS.spring },
-    { name:'Water', numberOfDays: 20, season: ENUM_SEASONS.spring },
-    { name:'Wood', numberOfDays: 19, season: ENUM_SEASONS.spring },
-    { name:'Light', numberOfDays: 21, season: ENUM_SEASONS.summer },
-    { name:'Dragon', numberOfDays: 20, season: ENUM_SEASONS.summer },
-    { name:'Fire', numberOfDays: 21, season: ENUM_SEASONS.summer },
-    { name:'Steel', numberOfDays: 20, season: ENUM_SEASONS.fall },
-    { name:'Stone', numberOfDays: 21, season: ENUM_SEASONS.fall },
-    { name:'Moon', numberOfDays: 20, season: ENUM_SEASONS.fall },
-    { name:'Darkness', numberOfDays: 21, season: ENUM_SEASONS.winter }
+    { name:'Ice', numberOfDays: 21, season: ENUM_SEASONS.winter, noun: 'mid' },
+    { name:'Wind', numberOfDays: 20, season: ENUM_SEASONS.winter, noun: 'late' },
+    { name:'Sun', numberOfDays: 21, season: ENUM_SEASONS.spring, noun: 'early' },
+    { name:'Water', numberOfDays: 20, season: ENUM_SEASONS.spring, noun: 'mid' },
+    { name:'Wood', numberOfDays: 19, season: ENUM_SEASONS.spring, noun: 'late' },
+    { name:'Light', numberOfDays: 21, season: ENUM_SEASONS.summer, noun: 'early' },
+    { name:'Dragon', numberOfDays: 20, season: ENUM_SEASONS.summer, noun: 'mid' },
+    { name:'Fire', numberOfDays: 21, season: ENUM_SEASONS.summer, noun: 'late' },
+    { name:'Steel', numberOfDays: 20, season: ENUM_SEASONS.fall, noun: 'early' },
+    { name:'Stone', numberOfDays: 21, season: ENUM_SEASONS.fall, noun: 'mid' },
+    { name:'Moon', numberOfDays: 20, season: ENUM_SEASONS.fall, noun: 'late' },
+    { name:'Darkness', numberOfDays: 21, season: ENUM_SEASONS.winter, noun: 'early' }
 ]
 
 const date = {
     year: 1001,
-    month: 2,
+    month: 3,
     day: 1
 }
 /**
@@ -78,7 +78,8 @@ const yearsPassed = (startDate, currentDate) => {
  * @param {object} date 
  */
 const printDate = (date, runId) => {
-    echo(`${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`, runId)
+    // echo(`${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`, runId)
+    echo(`${months[date.month -1].noun} ${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`, runId)
 }
 
 const getSeason = (date) => {

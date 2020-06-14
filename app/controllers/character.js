@@ -10,14 +10,13 @@ const {
     ENUM_BODY_PART,
     ENUM_CHARACTER_STATUS } = require('../constants');
 const skills = require('../skill/skills')
-const { languageFactory,getLanguageSkollLevelText } = require('../language/languages')
+const { languageFactory, getLanguageSkollLevelText } = require('../language/languages')
 const { getEquipment } = require('../items/equipment')
 const { getPersonality } = require('../relationships/personality')
 const { echo, copyObject, generateID } = require('../lib/utils')
 const { D4, D6, D8, D10, D12, D20 } = require('../lib/dice')
 
 const print = (character, runId) => {
-    //echo(`¤~---------- PROFILE ----------~¤`)
     echo(`${character.name}, the ${character.race.name} ${character.jobs[0].name}`, runId)
     /* echo(` ID: ${character.id}`)
     echo(` HP: ${character.maxHP}/${character.currentHP}`)
