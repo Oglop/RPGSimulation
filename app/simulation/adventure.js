@@ -1,26 +1,30 @@
 const { rollCharacter, print } = require('../controllers/character')
 const { date, addDay, printDate, yearsPassed } = require('../world/time')
-const { echo, copyObject } = require('../lib/utils')
+const { echo, copyObject, generateID } = require('../lib/utils')
 const { getParty } = require('../party/party') 
 const { buildWorld } = require('../world/world') 
 const { findShortestPath } = require('../world/pathFinding')
 const { ENUM_EXPLORE_STATUS } = require('../constants') 
 const { quest } = require('../world/quests/mainQuests')
 const { takeTurn } = require('./turn')
+const { getStoryPoint } = require('../world/legend')
 /**
  * 
  * @param {int} partySize 
  */
 const goOnAdventure = (partySize, yearsToSimulate) => {
+    const runId = generateID()
     const grid = buildWorld()
     const now = copyObject(date)
-    echo(`Once upon a time`)
-    printDate(now)
-    
+    echo(getStoryPoint(1), runId)
+    echo(getStoryPoint(2), runId)
+    printDate(now, runId)
+    echo(getStoryPoint(3), runId)
     let _party = getParty(partySize)
     for(let i = 0; i < _party.adventurers.length; i++) {
-        print( _party.adventurers[i])
+        print( _party.adventurers[i], runId)
     }
+    echo(getStoryPoint(4), runId)
     _party.quest = quest
     _party.maxAdventurers = partySize
     //grid[0][0] = ENUM_EXPLORE_STATUS.start;

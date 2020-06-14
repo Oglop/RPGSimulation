@@ -1,3 +1,5 @@
+const { write } = require('../lib/output')
+const { id } = require('../config')
 const copyObject = (o) => {
     return JSON.parse(JSON.stringify(o))
 } 
@@ -6,8 +8,9 @@ const copyArray = arr => {
     return [...arr]
 }
 
-const echo = s => {
+const echo = (s, runId) => {
     console.log(s)
+    write(runId, s)
 }
 
 const getPercetage = (total, part) => {

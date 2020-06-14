@@ -19,7 +19,7 @@ const { doFriendshipCalculation } = require('../relationships/relation')
  * @param {object} party 
  * @param {object} date 
  */
-const takeTurn = (party, date) => {
+const takeTurn = (party, date, runId) => {
     
 
     // TODO CHECK IF IN TOWN OR QUEST EVENT
@@ -43,7 +43,7 @@ const takeTurn = (party, date) => {
         if (restForTheDay === true) {
             const r = room(party.location[0],party.location[1]);
             rest(party, r.biome, getSeason(date))
-            rollEvent(party, date, ENUM_EVENT_TYPE.restEvent, r.biome)
+            rollEvent(party, date, ENUM_EVENT_TYPE.restEvent, r.biome, runId)
         } else {
             const i = 0
             // if not rest search for quest => go to town

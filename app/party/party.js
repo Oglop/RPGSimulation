@@ -88,9 +88,38 @@ const bury = party => {
 
 }
 
+const partyContainsPersonality = (party, persTrait) => {
+    const col = []
+    for (const c of party.adventurers) {
+        if (c.personality.trait = trait) { col.push(c) }
+    }
+    return col
+}
+
+const partyContainsRace = (party, race) => {
+    const col = []
+    for (const c of party.adventurers) {
+        if (c.race.name = race) { col.push(c) }
+    }
+    return col
+}
+
+const partyContainsSkill = (party, skill) => {
+    const col = []
+    for (const c of party.adventurers) {
+        for (const s of c.skills) {
+            if (s.name === skill) { col.push(c) }
+        }
+    }
+    return col
+}
+
 module.exports = {
     getParty, 
     getPartyMaxCurHpStamina, 
     getRandomCharacter,
-    bury
+    bury,
+    partyContainsPersonality,
+    partyContainsRace,
+    partyContainsSkill
 }

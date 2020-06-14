@@ -17,14 +17,14 @@ const travelEventsPlains = require('./travelEventsPlains')
  * @param {ENUM_EVENT_TYPE} eventType 
  * @param {ENUM_BIOMES} biome 
  */
-const rollEvent = (party, date, eventType, biome) => {
+const rollEvent = (party, date, eventType, biome, runId) => {
     if (eventType === ENUM_EVENT_TYPE.restEvent) {
         const i = Math.floor( 1 + Math.random() * 100)
         switch (i) {
-            case 0: restEvents.darkNight(party); break;
-            case 2: restEvents.perfectSleep(party); break;
-            case 3: restEvents.storyTime(party); break;
-            case 4: restEvents.traveler(party); break;
+            case 0: restEvents.darkNight(party, runId); break;
+            case 2: restEvents.perfectSleep(party, runId); break;
+            case 3: restEvents.storyTime(party, runId); break;
+            case 4: restEvents.traveler(party, runId); break;
         }
         return
     }
@@ -32,8 +32,8 @@ const rollEvent = (party, date, eventType, biome) => {
     if (eventType === ENUM_EVENT_TYPE.travelEvent && biome === ENUM_BIOMES.plains) {
         const i = Math.floor( 1 + Math.random() * 100)
         switch (i) {
-            case 0: return travelEventsPlains.rainStorm(party, date, eventType, biome)
-            case 1: return travelEventsPlains.stream(party, date, eventType, biome)
+            case 0: return travelEventsPlains.rainStorm(party, date, eventType, biome, runId)
+            case 1: return travelEventsPlains.stream(party, date, eventType, biome, runId)
         }
     }
 }

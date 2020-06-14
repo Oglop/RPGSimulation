@@ -1,4 +1,8 @@
+
 module.exports = {
+    ROOT: __dirname,
+    FILE_PATH:'/outputs/',
+    ERROR_FILE_PATH: '',
     STATS_MIN_VALUE: 3,
     STATS_MIN_SUM: 40,
     STATS_MAX_ROLLABLE: 12,

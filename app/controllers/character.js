@@ -16,10 +16,10 @@ const { getPersonality } = require('../relationships/personality')
 const { echo, copyObject, generateID } = require('../lib/utils')
 const { D4, D6, D8, D10, D12, D20 } = require('../lib/dice')
 
-const print = character => {
-    echo(`¤~---------- PROFILE ----------~¤`)
-    echo(`${character.name} lv ${character.level}, the ${character.personality.trait} ${character.race.name} ${character.jobs[0].name}`)
-    echo(` ID: ${character.id}`)
+const print = (character, runId) => {
+    //echo(`¤~---------- PROFILE ----------~¤`)
+    echo(`${character.name}, the ${character.race.name} ${character.jobs[0].name}`, runId)
+    /* echo(` ID: ${character.id}`)
     echo(` HP: ${character.maxHP}/${character.currentHP}`)
     echo(` MP: ${character.maxStamina}/${character.currentStamina}`)
     echo(`STATS: ${JSON.stringify(character.stats)}`)
@@ -34,7 +34,7 @@ const print = character => {
         if (character.equipment[key].description !== undefined) {
             echo(character.equipment[key].description);
         }
-    }
+    }*/
 }
 const printShort = character => {
     echo(`${character.name} lv ${character.level}, the ${character.race.name} ${character.jobs[0].name}`)

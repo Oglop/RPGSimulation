@@ -77,8 +77,8 @@ const yearsPassed = (startDate, currentDate) => {
  * echos date object
  * @param {object} date 
  */
-const printDate = date => {
-    echo(`${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`)
+const printDate = (date, runId) => {
+    echo(`${months[date.month -1].season} of ${date.year}, day ${date.day} in the month of ${months[date.month -1].name}`, runId)
 }
 
 const getSeason = (date) => {
