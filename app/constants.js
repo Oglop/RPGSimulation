@@ -146,7 +146,10 @@ module.exports = {
         plains: 'P',
         lake: 'L',
         dessert: 'D',
-        badlands: 'B'
+        badlands: 'B',
+        city: 'C',
+        road: 'R',
+        questLocation: 'Q'
     },
     ENUM_BIOME_DESCRIPTIONS: {
         forest: 'forest',
@@ -171,5 +174,11 @@ module.exports = {
     ENUM_TRAVEL_RESULTS: {
         allGood: 'allGood',
         noTravel: 'noTravel'
+    },
+    ENUM_SPELLS: {
+        burst:'burst',
+        heal: 'heal',
+        protection:'protection',
+        trueSight:'trueSight'
     }
 }

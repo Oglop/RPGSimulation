@@ -18,7 +18,7 @@ const goOnAdventure = (partySize, yearsToSimulate) => {
     const now = copyObject(date)
     echo(getStoryPoint(1), runId)
     echo(getStoryPoint(2), runId)
-    printDate(now, runId)
+    
     echo(getStoryPoint(3), runId)
     let _party = getParty(partySize)
     for(let i = 0; i < _party.adventurers.length; i++) {
@@ -31,6 +31,7 @@ const goOnAdventure = (partySize, yearsToSimulate) => {
     grid[_party.quest.goalCoordinates[0]][_party.quest.goalCoordinates[1]] = ENUM_EXPLORE_STATUS.goal;
     _party.journey = findShortestPath(_party.location, grid)
     console.log(_party.journey)
+    printDate(now, runId)
 
     
     

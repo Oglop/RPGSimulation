@@ -1,6 +1,5 @@
 const fs = require('fs')
 const { FILE_PATH, ROOT } = require('../constants')
-const { id } = require('../config')
 
 const write = (file, text) => {
     const path = `${ROOT}${FILE_PATH}${file}.txt`
