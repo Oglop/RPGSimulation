@@ -21,6 +21,12 @@ const trueSight = {
     description: 'goes into a trance, eyes shining white',
     staminaCost: ENUM_DICE.d4
 }
+
+const calmLight = {
+    name: ENUM_SPELLS.calmLight,
+    description: 'spreads a soft light in the room',
+    staminaCost: ENUM_DICE.d4
+}
 /**
  * 
  * @param {object} character 
@@ -38,9 +44,10 @@ const getSpell = spell => {
         case ENUM_SPELLS.heal: return copyObject(heal)
         case ENUM_SPELLS.protection: return copyObject(protection)
         case ENUM_SPELLS.trueSight: return copyObject(trueSight)
+        case ENUM_SPELLS.calmLight: return copyObject(calmLight)
     }
 }
 
 module.exports = {
-    burst, heal, protection, trueSight, hasSpell, getSpell
+    burst, heal, protection, trueSight, hasSpell, getSpell,calmLight
 }

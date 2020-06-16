@@ -173,13 +173,16 @@ module.exports = {
     },
     ENUM_TRAVEL_RESULTS: {
         allGood: 'allGood',
-        noTravel: 'noTravel'
+        noTravel: 'noTravel',
+        endOfRoad: 'endOfRoad',
+        skip:'skip'
     },
     ENUM_SPELLS: {
         burst:'burst',
         heal: 'heal',
         protection:'protection',
-        trueSight:'trueSight'
+        trueSight:'trueSight',
+        calmLight:'calmlight'
     },
     ENUM_QUESTS: {
         rumorsOfLostCaravan: 'rumorsOfLostCaravan',
@@ -191,5 +194,8 @@ module.exports = {
     ENUM_QUEST_STATUS: {
         ONGOING: 0,
         COMPLETED: 1
+    },
+    ENUM_ITEMS: {
+        torch: 'torch'
     }
 }

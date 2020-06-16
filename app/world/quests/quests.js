@@ -1,5 +1,6 @@
 const { D4 } = require('../../lib/dice')
 const { echo, copyObject } = require('../../lib/utils')
+const questEvents = require('../../simulation/events/questEvents')
 const { ENUM_QUEST_STATUS } = require('../../constants')
 const quest = {
     goalCoordinates: [],
@@ -55,7 +56,7 @@ const rumorsOfMonster = (quest, runId) => {
         echo('Rumors speak of a dangerous monster in the western swamps. The party decides to investigate.', runId)
         const q = copyObject(quest)
         q.goalCoordinates = [12,3]
-
+        q.questEvents.push()
         
         return q
     }
@@ -82,18 +83,45 @@ const rumorsOfMagic = (quest, runId) => {
 const rumorsOfRuins = (quest, runId) => {
     const i = D4()
     if (i === 1) {
-        echo('The party hear rumors of ', runId)
+        echo('The party hear rumors of a some ancient ruins', runId)
         const q = copyObject(quest)
         q.goalCoordinates = [1,1]
-
-        
+        q.questEvents.push(copyObject(questEvents.randomEntrance))
+        q.questEvents.push(copyObject(questEvents.goingDown))
+        q.questEvents.push(copyObject(questEvents.hall))
+        q.questEvents.push(copyObject(questEvents.treasureRoom))
         return q
     } else if (quest === 2) {
-
+        echo('The party hear rumors of a some ancient ruins', runId)
+        const q = copyObject(quest)
+        q.goalCoordinates = [1,1]
+        q.questEvents.push(copyObject(questEvents.randomEntrance))
+        q.questEvents.push(copyObject(questEvents.smallChamber))
+        q.questEvents.push(copyObject(questEvents.goingDown))
+        q.questEvents.push(copyObject(questEvents.smallChamberWithTraps))
+        q.questEvents.push(copyObject(questEvents.goingDown))
+        q.questEvents.push(copyObject(questEvents.treasureRoom))
     } else if (quest === 3) {
-
+        echo('The party hear rumors of a some ancient ruins', runId)
+        const q = copyObject(quest)
+        q.goalCoordinates = [1,1]
+        q.questEvents.push(copyObject(questEvents.randomEntrance))
+        q.questEvents.push(copyObject(questEvents.goingDown))
+        q.questEvents.push(copyObject(questEvents.smallChamberWithHiddenDoor))
+        q.questEvents.push(copyObject(questEvents.hall))
+        q.questEvents.push(copyObject(questEvents.altar))
+        q.questEvents.push(copyObject(questEvents.treasureRoom))
     } else {
-
+        echo('The party hear rumors of a some ancient ruins', runId)
+        const q = copyObject(quest)
+        q.goalCoordinates = [1,1]
+        q.questEvents.push(copyObject(questEvents.randomEntrance))
+        q.questEvents.push(copyObject(questEvents.hall))
+        q.questEvents.push(copyObject(questEvents.crevice))
+        q.questEvents.push(copyObject(questEvents.smallChamberWithHiddenDoor))
+        q.questEvents.push(copyObject(questEvents.goingDown))
+        q.questEvents.push(copyObject(questEvents.smallChamberWithTraps))
+        q.questEvents.push(copyObject(questEvents.treasureRoom))
     }
 }
 

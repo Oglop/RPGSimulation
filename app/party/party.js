@@ -1,6 +1,6 @@
 const { copyObject } = require('../lib/utils')
 const { rollCharacter, print } = require('../controllers/character')
-const { ENUM_CHARACTER_STATUS } = require('../constants')
+const { ENUM_CHARACTER_STATUS, ENUM_ITEMS } = require('../constants')
 const { setPartyKnowEachOther } = require('../relationships/relation')
 
 const party = {
@@ -14,7 +14,12 @@ const party = {
     coins: 20,
     mood: 15,
     reputation: 0,
-    history: []
+    items: [
+        { 
+            name: ENUM_ITEMS.torch,  
+            number: 5
+        }
+    ]
 }
 
 const getParty = (partySize) => {
@@ -114,6 +119,11 @@ const partyContainsSkill = (party, skill) => {
     return col
 }
 
+const getItem = (party, item) => {
+    const itm = party.items.find(i => i.name === item)
+    return itm
+}
+
 module.exports = {
     getParty, 
     getPartyMaxCurHpStamina, 
@@ -121,5 +131,6 @@ module.exports = {
     bury,
     partyContainsPersonality,
     partyContainsRace,
-    partyContainsSkill
+    partyContainsSkill,
+    getItem
 }

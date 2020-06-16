@@ -6,7 +6,7 @@ const { getDiceByEnum } = require('../lib/dice')
 const { checkCharacterStatus } = require('../controllers/character')
 const { checkEnemyStatus } = require('./enemies/enemy')
 
-const fight = (party, enemies) => {
+const fight = (party, enemies, runId) => {
     let fightContinues = true
     let heroesWin = false
     freeShots(party, enemies)
@@ -26,8 +26,8 @@ const fight = (party, enemies) => {
         // do fight rounds
         fightingRound(h, e)
         // check for deaths
-        h = copyObject( getAliveAndFallenHeroes(h) )
-        e = copyObject( getAliveAndFallenMonsters(e) )
+        h = copyObject( getAliveAndFallenHeroes(h, runId) )
+        e = copyObject( getAliveAndFallenMonsters(e, runId) )
         // check for routes
         if (routes(e) === true) {
             fightContinues = false
@@ -84,13 +84,14 @@ const freeShots = (party, enemies) => {
     }
 }
 
-const getAliveAndFallenHeroes = col => {
+const getAliveAndFallenHeroes = (col, runId) => {
     const o = {
         alive:[],
         fallen:col.fallen
     }
     for (const c in col.adventurers) {
         if (checkCharacterStatus(c) !== ENUM_CHARACTER_STATUS.alive) {
+            echo(`${c.name} fell in battle`, runId)
             o.fallen.push(c)
         } else {
             o.alive.push(c)
@@ -99,13 +100,14 @@ const getAliveAndFallenHeroes = col => {
     return o
 }
 
-const getAliveAndFallenMonsters = col => {
+const getAliveAndFallenMonsters = (col, runId) => {
     const o = {
         alive:[],
         fallen: col.fallen
     }
     for (const c in col.enemies) {
         if (checkEnemyStatus(c) !== ENUM_CHARACTER_STATUS.alive) {
+            echo(`${c.name} fell`, runId)
             o.fallen.push(c)
         } else {
             o.alive.push(c)
