@@ -1,6 +1,6 @@
 const { copyObject } = require('../lib/utils')
 const { rollCharacter, print } = require('../controllers/character')
-const { ENUM_CHARACTER_STATUS, ENUM_ITEMS } = require('../constants')
+const { ENUM_CHARACTER_STATUS, ENUM_ITEMS,ENUM_TRAVEL_RESULTS } = require('../constants')
 const { setPartyKnowEachOther } = require('../relationships/relation')
 
 const party = {
@@ -19,7 +19,8 @@ const party = {
             name: ENUM_ITEMS.torch,  
             number: 5
         }
-    ]
+    ],
+    lastTravelResult: ENUM_TRAVEL_RESULTS.allGood
 }
 
 const getParty = (partySize) => {
@@ -96,7 +97,7 @@ const bury = party => {
 const partyContainsPersonality = (party, persTrait) => {
     const col = []
     for (const c of party.adventurers) {
-        if (c.personality.trait = trait) { col.push(c) }
+        if (c.personality.trait === persTrait) { col.push(c) }
     }
     return col
 }

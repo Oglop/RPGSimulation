@@ -17,8 +17,8 @@ const setPartyKnowEachOther = party => {
 }
 
 const doFriendshipCalculation = (party) => {
-    for (let i = 0; i < party.adventurers.lenth; i++) {
-        for (let j = i + 1; j < party.adventurers.lenth; i++) {
+    for (let i = 0; i < party.adventurers.length; i++) {
+        for (let j = i + 1; j < party.adventurers.length; j++) {
             compabilityCheck(party.adventurers[i], party.adventurers[j])
         }
     }

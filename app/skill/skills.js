@@ -1,7 +1,7 @@
 const { ENUM_SKILL_NAMES, ENUM_STAT_NAMES, ENUM_JOB_NAMES, ENUM_RACE_NAMES, ENUM_CHARACTER_STATUS, ENUM_STATS } = require('../constants')
 const { D20 } = require('../lib/dice');
 const { echo, copyObject } = require('../lib/utils')
-const { checkCharacterStatus } = require('../controllers/character')
+// const { checkCharacterStatus } = require('../controllers/character')
 /**
  * skillpoints
  * @param {int} points 
@@ -297,9 +297,11 @@ const statsCheck = (character, stat, modifier) => {
  * @param {string} skillId 
  */
 const testPartyForSkill = (party, skillId) => {
+    const { checkCharacterStatus } = require('../controllers/character')
     const successes = []
     for (const character of party.adventurers) {
-        if (checkCharacterStatus(character) === ENUM_CHARACTER_STATUS.alive) {
+        const alive = checkCharacterStatus(character)
+        if (alive === ENUM_CHARACTER_STATUS.alive) {
             for (const skill of character.skills) {
                 if (skill.name === skillId) {
                     const success = skillCheck(character, skill, skill.luckTest)

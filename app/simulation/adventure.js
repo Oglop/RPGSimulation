@@ -2,10 +2,9 @@ const { rollCharacter, print } = require('../controllers/character')
 const { date, addDay, printDate, yearsPassed } = require('../world/time')
 const { echo, copyObject, generateID } = require('../lib/utils')
 const { getParty } = require('../party/party') 
-const { buildWorld } = require('../world/world') 
-const { findShortestPath } = require('../world/pathFinding')
+const { buildWorld, getStartingLocation } = require('../world/world') 
 const { ENUM_EXPLORE_STATUS } = require('../constants') 
-const { quest } = require('../world/quests/mainQuests')
+const { quest } = require('../world/quests/quests')
 const { takeTurn } = require('./turn')
 const { getStoryPoint } = require('../world/legend')
 /**
@@ -28,19 +27,17 @@ const goOnAdventure = (partySize, yearsToSimulate) => {
     echo(getStoryPoint(4), runId)
     _party.quest = quest
     _party.maxAdventurers = partySize
+    _party.location = getStartingLocation()
     //grid[0][0] = ENUM_EXPLORE_STATUS.start;
-    grid[_party.quest.goalCoordinates[0]][_party.quest.goalCoordinates[1]] = ENUM_EXPLORE_STATUS.goal;
-    _party.journey = findShortestPath(_party.location, grid)
+
+    //     get journey
+    //grid[_party.quest.goalCoordinates[0]][_party.quest.goalCoordinates[1]] = ENUM_EXPLORE_STATUS.goal;
+    //_party.journey = findShortestPath(_party.location, grid)
     console.log(_party.journey)
-    printDate(now, runId)
-
-    
-    
-
+    for (let i = 0; i < 10; i++){
+        takeTurn(_party, grid, now, runId)
+    }
 }
-
-
-
 
 module.exports = {
     goOnAdventure

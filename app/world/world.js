@@ -92,6 +92,16 @@ const buildWorld = () => {
     return grid
 }
 
-module.exports = {
-    buildWorld
+const getStartingLocation = () => {
+  const i = Math.floor(Math.random() * 4)
+  switch (i) {
+    case 0: return [11, 6]
+    case 1: return [4, 8]
+    case 2: return [5, 16]
+    case 3: return [16, 9]
+  }
 }
+
+module.exports = {
+    buildWorld, getStartingLocation
+} 

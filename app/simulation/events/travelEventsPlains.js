@@ -56,11 +56,14 @@ const ruins = (party, date, eventType, biome, runId) => {
  * @param {ENUM_BIOMES} biome 
  */
 const stream = (party, date, eventType, biome, runId) => {
-    echo(`The party comes across a small stream of water`, runId)
+    echo(`A small stream of water run along the path.`, runId)
     const fishSuccess = testPartyForSkill(party, ENUM_SKILL_NAMES.fishing)
     for (const c of fishSuccess) {
         echo(` ${c.name} caught a fish!`, runId)
         party.food += D8()
+    }
+    if (fishSuccess.length === 0) {
+        echo(` Fishes are jumping in the stream. After a few failed atempts of catching one the party keeps giong.`, runId)
     }
     return ENUM_TRAVEL_RESULTS.allGood
 }
@@ -128,6 +131,8 @@ const farm = (party, runId) => {
                   echo(` ${lockSuccess[0].name} successfully pick the lock revealing a minor treasure.`, runId)
                   party.coins += treasureRoll(3)
               }
+          } else {
+              echo(`The party searches the farm but can´t find anything but a few broken farm tools.`)
           }
           return ENUM_TRAVEL_RESULTS.allGood
       } else if (i === 2) {

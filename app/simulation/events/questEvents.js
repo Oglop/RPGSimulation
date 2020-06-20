@@ -1,9 +1,12 @@
 const { skillCheck, testPartyForSkill, statsCheck } = require("../../skill/skills")
-const { ENUM_SKILL_NAMES, ENUM_SPELLS, ENUM_ITEMS, ENUM_DICE, ENUM_TRAVEL_RESULTS, ENUM_STAT_NAMES } = require('../../constants')
+const { ENUM_SKILL_NAMES, ENUM_SPELLS, ENUM_ITEMS, ENUM_DICE, ENUM_TRAVEL_RESULTS, ENUM_STAT_NAMES, ENUM_RACE_NAMES, ENUM_LANGUAGES, ENUM_QUEST_STATUS } = require('../../constants')
 const { echo, getRandomElement } = require('../../lib/utils')
-const { getItem, partyContainsSkill,  } = require('../../party/party')
+const { getItem, partyContainsSkill, partyContainsRace,  } = require('../../party/party')
 const { hasSpell, getSpell } = require('../../magic/spells')
 const { getDiceByEnum, D4 } = require('../../lib/dice')
+const { testPartyForLanguage } = require('../../language/languages')
+const { restCharacter, damageCharacter, healCharacter, exhaustCharacter } = require('../../controllers/character')
+
 
 const checkIfHaveLight = (party, runId) => {
     const haveLight = false
@@ -115,7 +118,47 @@ const randomEntrance = (party, runId) => {
 const altar = (party, runId) => {
     const haveLight = checkIfHaveLight(party)
     if (haveLight) {
-        echo(`along the wall is an altar.`, runId)
+        echo(`along the wall is a small statue can be seen.`, runId)
+        const i = d4()
+        if (i === 1) {
+            const hasDarkElf = partyContainsRace(party, ENUM_RACE_NAMES.darkElf)
+            if (hasDarkElf.length > 0) {
+                echo( `${hasDarkElf[0].name} reqognizes the statue as an altar to Vra Ishkni, the Dark Elves god of blood.`)
+                if (hasDarkElf[0].currentHP > 5) {
+                    echo( `${hasDarkElf[0].name} feels happy and offers some blood for good luck.`)
+                    damageCharacter(hasDarkElf[0], D4()) 
+                    restCharacter( hasDarkElf[0], D4())
+                }
+                echo( `${hasDarkElf[0].name} silently prays to the statue.`)
+            } else {
+                echo(`Nobody reqognize the statue and the party moves further into the cave.`, runId)
+            }
+            return ENUM_TRAVEL_RESULTS.allGood
+        } else if (i === 2) {
+            echo(` across the statue eerie runes can be seen.`, runId)
+            const languageSuccesses = testPartyForLanguage(party, ENUM_LANGUAGES.black)
+            if (languageSuccesses.length > 0) {
+                echo( `${languageSuccesses.name} recognizes the runes as a forbidden language from the other side. Shadows fill the room`, runId)
+                for (const c of party.adventurers) {
+                    if (hasSpell(c, ENUM_SPELLS.protection) && c.currentStamina > 4) {
+                        const spell = getSpell(ENUM_SPELLS.protection)
+                        echo(`${c.name} ${spell.description}`)
+                        const dice = getDiceByEnum(spell.protection)
+                        c.currentStamina -= dice()
+                        echo(` Voice seem to speak from within the walls. ${c.name} focuses and a flash lights up the room. The voice fade and the room turns back to normal.`, runId)
+                        return ENUM_TRAVEL_RESULTS.allGood
+                    }
+                }
+                return lostInDarkness(party, runId)
+            }
+            echo(` Nobody can read the runes. The party decides that some things are best left alone`, runId)
+            return ENUM_TRAVEL_RESULTS.allGood
+        } else if (i === 3) {
+
+        } else {
+
+        }
+
         return ENUM_TRAVEL_RESULTS.allGood
     } else {
         return lostInDarkness(party)
@@ -194,6 +237,41 @@ const crevice = (party, runId) =>{
     }
 }
 
+/**
+ * rumors of treasure 1
+ * @param {object} party 
+ * @param {string} runId 
+ */
+const elvenScout = (party, runId) => {
+    echo(`Among the trees the party spots a wood elf scout. As the party they notice she seems worried.`, runId)
+    const questContinues = false
+    const welven = testPartyForLanguage(party, ENUM_LANGUAGES.woodElven)
+    if (welven.length > 0) {
+        echo(`${welven[0].name} and the elf speaks shortly. ${welven[0].name} explains that her band of scouts went towards the old ruins and havn´t returned.`, runId)
+        questContinues = true
+    }
+    else {
+        woodElfs = partyContainsRace(party, ENUM_RACE_NAMES.woodElf)
+        if (woodElfs.length > 0) {
+            echo(` Altough from different tribes ${woodElfs[0].name} understands the scout. ${woodElfs[0].name} explains that her band of scouts went towards the old ruins and havn´t returned.`, runId)
+            questContinues = true
+        }
+    }
+    if (questContinues === false) {
+        echo(` The party can´t understand the elf and after several atempts she turns her back on them and disapears into the forest.`, runId)
+        return ENUM_TRAVEL_RESULTS.endOfRoad
+    } else {
+        echo(` The party follows the elves between the trees. At the edge of the ruins she stops and points. - There, she sais.`, runId)
+    }
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+/**
+ * rumors of treasure 1
+ */
+const atTheEdgeOfTheRuins = (party, runId) => {
+
+}
+
 
 
 module.exports = {
@@ -206,4 +284,4 @@ module.exports = {
     goingDown,
     altar,
     randomEntrance
-}
+}   

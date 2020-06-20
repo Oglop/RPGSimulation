@@ -30,10 +30,13 @@ const rollEvent = (party, date, eventType, biome, runId) => {
     }
     
     if (eventType === ENUM_EVENT_TYPE.travelEvent && biome === ENUM_BIOMES.plains) {
-        const i = Math.floor( 1 + Math.random() * 100)
+        const i = Math.floor( 1 + Math.random() * 5)
         switch (i) {
             case 0: return travelEventsPlains.rainStorm(party, date, eventType, biome, runId)
             case 1: return travelEventsPlains.stream(party, date, eventType, biome, runId)
+            case 2: return travelEventsPlains.farm(party, runId)
+            case 3: return travelEventsPlains.fruitTrees(party, date, ENUM_EVENT_TYPE.travelEvent, biome, runId)
+            case 4: return travelEventsPlains.river(party, date, eventType, biome, runId)
         }
     }
 }

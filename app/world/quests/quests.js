@@ -3,7 +3,7 @@ const { echo, copyObject } = require('../../lib/utils')
 const questEvents = require('../../simulation/events/questEvents')
 const { ENUM_QUEST_STATUS } = require('../../constants')
 const quest = {
-    goalCoordinates: [],
+    goalCoordinates: [99,99],
     questStatus: ENUM_QUEST_STATUS.ONGOING,
     questEvents:[]
 }

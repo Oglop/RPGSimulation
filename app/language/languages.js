@@ -1,6 +1,6 @@
 const { ENUM_LANGUAGES, ENUM_RACE_NAMES, ENUM_JOB_NAMES, ENUM_STAT_NAMES } = require('../constants')
 const { copyObject } = require('../lib/utils')
-const { D20, D6 } = require('../lib/dice')
+const { D20, D6, D4 } = require('../lib/dice')
 
 const ENUM_LANGUAGE_SKILL = {
     beginner: 'beginner',
@@ -575,12 +575,12 @@ const languageFactory = c => {
 }
 /**
  * 
- * @param {array} party array of character object
+ * @param {object} party array of character object
  * @param {string} language 
  */
 const languageCheck = (party, language) => {
     let result = false
-    for(const c of party.characters) {
+    for(const c of party.adventurers) {
         for(const l of c.languages) {
             if (l.name === language) {
                 if (l.skillPoints <= D20()) {
@@ -592,7 +592,26 @@ const languageCheck = (party, language) => {
     }
     return result
 }
-
+/**
+ * 
+ * @param {object} party array of character object
+ * @param {string} language 
+ */
+const testPartyForLanguage = (party, language) => {
+    const result = []
+    for(const c of party.adventurers) {
+        for(const l of c.languages) {
+            if (l.name === language) {
+                if (l.skillPoints <= D20()) {
+                    result.push(c)
+                    l.skillPoints += 1
+                    break
+                }
+            }
+        }
+    }
+    return result
+}
 const tryToUnderstandEachOther = (char1, char2) => {
     for(l1 of char1.languages) {
         for(l2 of char2.languages) {
@@ -612,5 +631,5 @@ const testLangauge = (lang1, lang2) => {
 }
 
 module.exports = {
-    languageCheck, languageFactory, getLanguageSkollLevelText, testLangauge, tryToUnderstandEachOther
+    languageCheck, languageFactory, getLanguageSkollLevelText, testLangauge, tryToUnderstandEachOther, testPartyForLanguage
 }

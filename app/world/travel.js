@@ -8,20 +8,20 @@ const { D20 } = require('../lib/dice')
  * @param {object} party 
  * @param {array} grid 
  */
-const move = (party) => {
+const move = (party, runId) => {
     const dir = party.journey[0]
     if (dir !== undefined) {
         if (dir === ENUM_EXPLORE_DIR.north) {
-            echo(`The party is traveling north`)
+            echo(`The journey continues north`, runId)
             party.location[0] -= 1
         } else if (dir === ENUM_EXPLORE_DIR.east) {
-            echo(`The party is traveling east`)
+            echo(`The journey continues east`, runId)
             party.location[1] += 1
         } else if (dir === ENUM_EXPLORE_DIR.south) {
-            echo(`The party is traveling south`)
+            echo(`The journey continues south`, runId)
             party.location[0] += 1
         } else if (dir === ENUM_EXPLORE_DIR.west) {
-            echo(`The party is traveling west`)
+            echo(`The journey continues west`, runId)
             party.location[1] -= 1
         }
         party.journey.shift()
@@ -56,7 +56,7 @@ const checkIfLost = (party, biome) => {
             addMasteryOnSuccess(sk)
         }
     }
-    if (D20() <= difficulty) { return false; }
+    if (D20() >= difficulty) { return false; }
     return true;
 }
 
