@@ -15,6 +15,8 @@ const { echo } = require('../../lib/utils')
 const { getSeason } = require('../../world/time')
 const { treasureRoll } = require('../../world/treasure')
 const { partyContainsPersonality, partyContainsRace } = require('../../party/party')
+const { getStoryPoint } = require('../../world/legend')
+
 /**
  * 1
  * @param {object} party 
@@ -76,6 +78,17 @@ const fruitTrees = (party, date, eventType, biome, runId) => {
         party.food += D6()
     } else {
         echo(` During summer and fall this would be a great place to gather food, now there is no fruit`, runId)
+    }
+    return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const weather = (date) => {
+    const season = getSeason(date)
+    switch (season) {
+        case ENUM_SEASONS.summer: return getStoryPoint(5)
+        case ENUM_SEASONS.winter: return getStoryPoint(7)
+        case ENUM_SEASONS.fall: return getStoryPoint(6)
+        case ENUM_SEASONS.spring: return getStoryPoint(8)
     }
     return ENUM_TRAVEL_RESULTS.allGood
 }
@@ -175,7 +188,7 @@ const farm = (party, runId) => {
           echo(` The party leaves the farm in the morning feeling refreshed.`, runId)
           return ENUM_TRAVEL_RESULTS.allGood
       } else {
-          const stole = false
+          let stole = false
           echo(`You come across a wealthy farm, the farmer greets you.`, runId)
           echo(` The farmer offers the party to spend the night in the barn.`, runId)
           
@@ -210,5 +223,6 @@ module.exports = {
     fruitTrees,
     river,
     sometingSmells,
-    farm
+    farm,
+    weather
 }

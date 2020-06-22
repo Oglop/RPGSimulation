@@ -72,7 +72,7 @@ const getPartyMaxCurHpStamina = (party) => {
  */
 const getRandomCharacter = (party, allowDead) => {
     if (allowDead === true) {
-        const i = Math.floor(Math.random() + party.maxAdventurers)
+        const i = Math.floor(Math.random() * party.maxAdventurers)
         if (party.adventurers[i].status === ENUM_CHARACTER_STATUS.alive) { return party.adventurers[i] }
     } else {
         const aliveCharacters = []
@@ -82,7 +82,7 @@ const getRandomCharacter = (party, allowDead) => {
             }
         }
         if (aliveCharacters.length > 0) {
-            const i = Math.floor(Math.random() + aliveCharacters.length)
+            const i = Math.floor(Math.random() * aliveCharacters.length)
             return aliveCharacters[i]
         }
     }

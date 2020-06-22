@@ -21,7 +21,6 @@ const {
 } = require('../constants')
 const { doFriendshipCalculation } = require('../relationships/relation')
 const { getSpecialRoom } = require('../world/specialRooms')
-const { getRoom } = require('../world/room')
 const roomFactory = require('../world/factorys/roomFactory')
 /**
  * 
@@ -75,7 +74,7 @@ const takeTurn = (party, grid, date, runId) => {
                 } else {
                     // if not quest travel => check for getting lost ? => travel event
                     const r = room(party.location[0], party.location[1])
-                    const lost = checkIfLost(party, r.biome)
+                    const lost = checkIfLost(party, r.biome, runId)
                     if (!lost) {
                         if (party.lastTravelResult !== ENUM_TRAVEL_RESULTS.noTravel) {
                             party.lastTravelResult = ENUM_TRAVEL_RESULTS.allGood
@@ -87,7 +86,7 @@ const takeTurn = (party, grid, date, runId) => {
                             console.log(`------traveled`)
                         }
                     } else {
-                        echo(`The party lost it way and spent the day searching for a path forward.`)
+                        echo(`The party lost it´s way and spent the day searching for a path forward.`, runId)
                     }
                 }
 

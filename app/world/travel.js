@@ -35,7 +35,7 @@ const move = (party, runId) => {
  * @param {object} party 
  * @param {ENUM_BIOMES} biome 
  */
-const checkIfLost = (party, biome) => {
+const checkIfLost = (party, biome, runId) => {
     // TODO ADD ROADS
     let difficulty = 0
     switch(biome) {

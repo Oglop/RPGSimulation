@@ -4,7 +4,8 @@ const {
     ENUM_LANGUAGES, 
     ENUM_RACE_NAMES, 
     ENUM_SEASONS,
-    ENUM_SKILL_NAMES
+    ENUM_SKILL_NAMES,
+    ENUM_TRAVEL_RESULTS
 } = require('../../constants')
 const { D4, D6, D8, D10, D12, D20 } = require('../../lib/dice')
 const { healCharacter, checkCharacterStatus, restCharacter, damageCharacter, exhaustCharacter } = require('../../controllers/character')
@@ -22,13 +23,13 @@ const rest = (party, biome, season, runId) => {
     for (const c of huntSuccesses) {
         echo(` ${c.name} returned after a successful hunt.`, runId)
         switch (biome) {
-            case ENUM_BIOMES.badlands: gatheredFood += D8(); break;
-            case ENUM_BIOMES.dessert: gatheredFood += D4(); break;
-            case ENUM_BIOMES.forest: gatheredFood += D12(); break;
-            case ENUM_BIOMES.hills: gatheredFood += D10(); break;
-            case ENUM_BIOMES.mountains: gatheredFood += D8(); break;
-            case ENUM_BIOMES.plains: gatheredFood += D10(); break;
-            case ENUM_BIOMES.swamp: gatheredFood += D6(); break;
+            case ENUM_BIOMES.badlands: gatheredFood += party.maxAdventurers + D8(); break;
+            case ENUM_BIOMES.dessert: gatheredFood += party.maxAdventurers + D4(); break;
+            case ENUM_BIOMES.forest: gatheredFood += party.maxAdventurers + D12(); break;
+            case ENUM_BIOMES.hills: gatheredFood += party.maxAdventurers + D10(); break;
+            case ENUM_BIOMES.mountains: gatheredFood += party.maxAdventurers + D8(); break;
+            case ENUM_BIOMES.plains: gatheredFood += party.maxAdventurers + D10(); break;
+            case ENUM_BIOMES.swamp: gatheredFood += party.maxAdventurers + D6(); break;
         }
         switch (season) {
             case ENUM_SEASONS.fall: gatheredFood += D6() * 2; break;
@@ -140,7 +141,7 @@ const travelingMerchant = (party, date, eventType, biome, runId) => {
                 echo(` ${c.name} decides against it.`, runId)
         }
     }
-    echo(` The merchant leaves and the party continuous on their travel.`, runId)
+    echo(` The merchant leaves and the party and continues on their travel.`, runId)
     return ENUM_TRAVEL_RESULTS.allGood
 }
 
@@ -160,6 +161,10 @@ const campsite = (party, date, eventType, biome, runId) => {
 
 
     return ENUM_TRAVEL_RESULTS.allGood
+}
+
+const bandOfDwarves = (party, runId) => {
+    const i = 1
 }
 
 module.exports = {
