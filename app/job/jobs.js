@@ -137,6 +137,14 @@ const rollJob = () => {
     }   
 }
 
+const partyContainsJob = (party, job) => {
+    const col = []
+    for (const c of party.adventurers) {
+        if (c.job.name === job) { col.push(c) }
+    }
+    return col
+}
+
 module.exports = {
-    rollJob
+    rollJob, partyContainsJob
 }

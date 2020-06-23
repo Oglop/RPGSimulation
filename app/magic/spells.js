@@ -10,6 +10,11 @@ const heal = {
     description: 'radiates white calm light',
     staminaCost: ENUM_DICE.d4
 }
+const healingHerbs = {
+    name: ENUM_SPELLS.healingHerbs,
+    description: 'mixes some herbs into a potent salve',
+    staminaCost: ENUM_DICE.d4
+}
 const burst = {
     name: ENUM_SPELLS.burst,
     description: 'channels scorching flames',
@@ -45,9 +50,10 @@ const getSpell = spell => {
         case ENUM_SPELLS.protection: return copyObject(protection)
         case ENUM_SPELLS.trueSight: return copyObject(trueSight)
         case ENUM_SPELLS.calmLight: return copyObject(calmLight)
+        case ENUM_SPELLS.healingHerbs: return copyObject(healingHerbs)
     }
 }
 
 module.exports = {
-    burst, heal, protection, trueSight, hasSpell, getSpell,calmLight
+    burst, heal, protection, trueSight, hasSpell, getSpell,calmLight,healingHerbs
 }

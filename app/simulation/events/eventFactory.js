@@ -52,11 +52,12 @@ const rollEvent = (party, date, eventType, biome, runId) => {
         BAD LANDS
     */
     if (eventType === ENUM_EVENT_TYPE.travelEvent && biome === ENUM_BIOMES.badlands) {
-        const i = Math.floor(Math.random() * 3)
+        const i = Math.floor(Math.random() * 4)
         switch (i) {
             case 0: return generic.travelingMerchant(party, date, eventType, biome, runId)
             case 1: return travelEventsBadlands.blazingSun(party, date, runId)
             case 2: return travelEventsBadlands.thunderStorm(party, runId)
+            case 3: return travelEventsBadlands.which(party, runId)
         }
     }
     /* 

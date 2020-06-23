@@ -61,7 +61,7 @@ const takeTurn = (party, grid, date, runId) => {
 
             if (restForTheDay === true) {
                 const r = room(party.location[0],party.location[1]);
-                rest(party, r.biome, getSeason(date))
+                rest(party, r.biome, getSeason(date), runId)
                 party.lastTravelResult = ENUM_TRAVEL_RESULTS.allGood
                 rollEvent(party, date, ENUM_EVENT_TYPE.restEvent, r.biome, runId)
             } else {

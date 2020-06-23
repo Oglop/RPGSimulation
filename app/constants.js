@@ -182,7 +182,8 @@ module.exports = {
         heal: 'heal',
         protection:'protection',
         trueSight:'trueSight',
-        calmLight:'calmlight'
+        calmLight:'calmlight',
+        healingHerbs:'healingHerbs'
     },
     ENUM_QUESTS: {
         rumorsOfLostCaravan: 'rumorsOfLostCaravan',
