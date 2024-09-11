@@ -16,6 +16,6 @@
   "author": "Stefan Gustavsson",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^26.0.1"
+    "jest": "^29.7.0"
   }
 }
